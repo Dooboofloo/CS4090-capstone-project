@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://b5a6xtrjxtvvi"]
+[gd_scene load_steps=34 format=3 uid="uid://b5a6xtrjxtvvi"]
 
+[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_ab1jw"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="1_m807l"]
 [ext_resource type="Texture2D" uid="uid://b0w4ffyh86e3g" path="res://indev/Caveman Age Map Stuff/texture_07.png" id="2_y8qd7"]
+[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="4_304is"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vclh2"]
 sky_top_color = Color(0, 0.397557, 0.629019, 1)
@@ -82,7 +84,7 @@ material = SubResource("StandardMaterial3D_3cafu")
 size = Vector3(1, 0.5, 35.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4ftn"]
-size = Vector3(20, 0.5, 1)
+size = Vector3(20, 0.414063, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1euk3"]
 albedo_color = Color(0.807843, 0.678431, 0.368627, 1)
@@ -94,7 +96,7 @@ material = SubResource("StandardMaterial3D_1euk3")
 size = Vector3(20, 0.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dpjka"]
-size = Vector3(1, 0.5, 53)
+size = Vector3(1.11148, 0.35434, 53.0883)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hsv3"]
 albedo_color = Color(0.788235, 0.690196, 0.4, 1)
@@ -105,13 +107,29 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_5hsv3")
 size = Vector3(1, 0.5, 53)
 
+[sub_resource type="Curve3D" id="Curve3D_swcr6"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 19.9924, 0, -47.9903, 0, 0, 0, 0, 0, 0, 19.984, 0, -16.9908, 0, 0, 0, 0, 0, 0, -0.99251, 0, -17.0148, 0, 0, 0, 0, 0, 0, -1.01211, 0, -52.497, 0, 0, 0, 0, 0, 0, -20.9884, 0, -52.4907, 0, 0, 0, 0, 0, 0, -20.9865, 0, 52.5024, 0, 0, 0, 0, 0, 0, -0.982655, 0, 52.4981, 0, 0, 0, 0, 0, 0, -0.98669, 0, 17.0004, 0, 0, 0, 0, 0, 0, 20.0009, 0, 16.9999, 0, 0, 0, 0, 0, 0, 20.0018, 0, 47.9858),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pf62"]
+albedo_texture = ExtResource("4_304is")
+normal_scale = -0.18
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sji6m"]
+material = SubResource("StandardMaterial3D_2pf62")
+
 [node name="Caveman Map outline" type="Node3D"]
+script = ExtResource("1_ab1jw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_87b2l")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01914, 2.46448)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4498, 1.01914, 39.1525)
 script = ExtResource("1_m807l")
 
 [node name="Ground_Terrain" type="StaticBody3D" parent="."]
@@ -180,7 +198,7 @@ shape = SubResource("BoxShape3D_y4ftn")
 mesh = SubResource("BoxMesh_lfqcy")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Path Left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0222, 0, -6.51462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.963, -0.021, -6.492)
 shape = SubResource("BoxShape3D_dpjka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Left/CollisionShape3D5"]
@@ -191,6 +209,7 @@ mesh = SubResource("BoxMesh_25bo8")
 transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 20, 0.042, -33)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Path Right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.007, 0.042, 0)
 shape = SubResource("BoxShape3D_rrv4q")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D"]
@@ -198,7 +217,7 @@ mesh = SubResource("BoxMesh_t6d8v")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Path Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.005, 0, -16)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.005, 0.042, -16)
 shape = SubResource("BoxShape3D_yfck7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D2"]
@@ -206,23 +225,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180244, 0, 0)
 mesh = SubResource("BoxMesh_lqw7e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Path Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9856, -4.76837e-07, 1.25197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.992, 0.042, 1.252)
 shape = SubResource("BoxShape3D_yf8yw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D3"]
 mesh = SubResource("BoxMesh_1e6pg")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Path Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4924, 0, 19.4992)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.492, 0.042, 19.499)
 shape = SubResource("BoxShape3D_y4ftn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D4"]
 mesh = SubResource("BoxMesh_lfqcy")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Path Right"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.0222, 0, -6.51462)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.963, 0.021, -6.492)
 shape = SubResource("BoxShape3D_dpjka")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0271282, 0.0212278, -0.00834656)
 mesh = SubResource("BoxMesh_25bo8")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752068, 0)
+curve = SubResource("Curve3D_swcr6")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+unique_name_in_owner = true
+transform = Transform3D(-0.999931, 0, 0.000271929, 0, 1, 0, -0.000271929, 0, -0.99993, 19.9924, 0, -47.9903)
+loop = false
+
+[node name="Test Unit" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
+mesh = SubResource("BoxMesh_sji6m")
