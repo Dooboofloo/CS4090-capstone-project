@@ -16,6 +16,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#Below here is stuff for the camera moving around.
 	lookAngles.y = clamp(lookAngles.y, PI / -2, PI / 2)
 	set_rotation(Vector3(lookAngles.y, lookAngles.x, 0))
 	var direction = updateDirection()
@@ -26,10 +27,12 @@ func _process(delta):
 		velocity = velocity.normalized() * moveSpeed
 	
 	translate(velocity * delta)
+	
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		lookAngles -= event.relative / mouseSpeed
+
 
 func updateDirection():
 	var dir = Vector3()

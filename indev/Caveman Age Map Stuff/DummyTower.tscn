@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpy1774qytj42"]
+
+[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="1_xlshq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywy31"]
+albedo_texture = ExtResource("1_xlshq")
+uv1_scale = Vector3(5, 5, 5)
+
+[sub_resource type="SphereMesh" id="SphereMesh_c7mn4"]
+material = SubResource("StandardMaterial3D_ywy31")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_03ka2"]
+
+[node name="DummyTower" type="Node3D"]
+
+[node name="Perish" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Perish"]
+shape = SubResource("SphereShape3D_etvmx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Perish/CollisionShape3D"]
+mesh = SubResource("SphereMesh_c7mn4")
+
+[node name="PlacementDenial" type="Area3D" parent="Perish"]
+transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1.8, 0, -0.44, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Perish/PlacementDenial"]
+shape = SubResource("BoxShape3D_03ka2")
