@@ -1,11 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjwa34xe6icnx"]
 
-[ext_resource type="PackedScene" uid="uid://b5a6xtrjxtvvi" path="res://indev/Caveman Age Map Stuff/Caveman Scene.tscn" id="1_qwdel"]
+[ext_resource type="PackedScene" uid="uid://c8m1ehv3630xk" path="res://indev/UserInterface/GameDuplicated/Caveman Scene.tscn" id="2_5ylqe"]
 [ext_resource type="Script" path="res://indev/UserInterface/user_interface.gd" id="2_jcy1m"]
 
 [node name="Node3D" type="CanvasLayer"]
-
-[node name="Caveman Map outline" parent="." instance=ExtResource("1_qwdel")]
 
 [node name="UserInterface" type="HBoxContainer" parent="."]
 anchors_preset = 10
@@ -21,6 +19,8 @@ text = "Send Unit"
 [node name="PlaceTowerButton" type="Button" parent="UserInterface"]
 layout_mode = 2
 text = "Place Tower"
+
+[node name="Caveman Map outline" parent="." instance=ExtResource("2_5ylqe")]
 
 [connection signal="pressed" from="UserInterface/SendUnitButton" to="UserInterface" method="_on_send_unit_button_pressed"]
 [connection signal="pressed" from="UserInterface/PlaceTowerButton" to="UserInterface" method="_on_place_tower_button_pressed"]
