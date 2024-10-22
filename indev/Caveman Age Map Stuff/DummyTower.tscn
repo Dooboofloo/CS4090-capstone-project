@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpy1774qytj42"]
+[gd_scene load_steps=10 format=3 uid="uid://cpy1774qytj42"]
 
+[ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_4w3op"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="1_xlshq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
@@ -12,8 +13,29 @@ uv1_scale = Vector3(5, 5, 5)
 material = SubResource("StandardMaterial3D_ywy31")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03ka2"]
+size = Vector3(1.8, 0.1, 1.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agfrn"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.298, 1, 0.245, 0.102)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5srkt"]
+material = SubResource("StandardMaterial3D_agfrn")
+flip_faces = true
+top_radius = 4.5
+bottom_radius = 5.0
+height = 0.05
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_owd2w"]
+height = 1.5
 
 [node name="DummyTower" type="Node3D"]
+script = ExtResource("1_4w3op")
+tower_name = "Dummy Tower"
 
 [node name="Perish" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0)
@@ -25,7 +47,19 @@ shape = SubResource("SphereShape3D_etvmx")
 mesh = SubResource("SphereMesh_c7mn4")
 
 [node name="PlacementDenial" type="Area3D" parent="Perish"]
-transform = Transform3D(1.8, 0, 0, 0, 0.1, 0, 0, 0, 1.8, 0, -0.44, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Perish/PlacementDenial"]
 shape = SubResource("BoxShape3D_03ka2")
+
+[node name="RangeIndicator" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_5srkt")
+
+[node name="DetectUnitArea" type="Area3D" parent="."]
+
+[node name="DetectUnitCollisionShape" type="CollisionShape3D" parent="DetectUnitArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_owd2w")
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
