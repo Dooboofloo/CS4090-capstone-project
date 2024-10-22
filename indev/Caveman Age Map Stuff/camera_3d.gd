@@ -30,7 +30,13 @@ func _process(delta):
 	
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if Input.is_action_just_pressed("right_click"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	
+	if (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED) and (event is InputEventMouseMotion):
 		lookAngles -= event.relative / mouseSpeed
 
 
