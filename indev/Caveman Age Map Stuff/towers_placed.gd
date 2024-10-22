@@ -37,7 +37,8 @@ func placement():
 		print(result)
 	
 		#This part is checking results and placing whatever needs to be.
-		if result.get('collider') == %Placeable_Area:
+		#if result.get('collider') == %Placeable_Area:
+		if result.get('collider') is PlaceableArea:
 			#Preloading scene with our model
 			var model = preload("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
 			#Duplicating the object

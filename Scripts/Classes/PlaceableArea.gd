@@ -1,0 +1,2 @@
+class_name PlaceableArea
+extends Area3D

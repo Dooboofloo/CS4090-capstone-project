@@ -1,3 +1,5 @@
+# TODO! make unit_detection_shape stop interfering with tower placement stuff
+
 class_name Tower
 extends Node3D
 
