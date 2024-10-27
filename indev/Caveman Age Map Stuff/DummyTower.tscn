@@ -39,6 +39,7 @@ tower_name = "Dummy Tower"
 
 [node name="Perish" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0)
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Perish"]
 shape = SubResource("SphereShape3D_etvmx")
@@ -56,6 +57,7 @@ shape = SubResource("BoxShape3D_03ka2")
 mesh = SubResource("CylinderMesh_5srkt")
 
 [node name="DetectUnitArea" type="Area3D" parent="."]
+collision_layer = 2
 
 [node name="DetectUnitCollisionShape" type="CollisionShape3D" parent="DetectUnitArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

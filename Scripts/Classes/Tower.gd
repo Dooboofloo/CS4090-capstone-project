@@ -1,4 +1,4 @@
-# TODO! make unit_detection_shape stop interfering with tower placement stuff
+# ALL TOWERS MUST HAVE DetectUnitArea ON LAYER 2 FOR COLLISION. This stops tower placement from being affected by it.
 
 class_name Tower
 extends Node3D
@@ -15,6 +15,7 @@ extends Node3D
 @onready var cooldown_timer = $CooldownTimer
 
 var ENEMIES_IN_RANGE = [] # A list of enemies that are currently in range
+var is_preview = false #Variable for us to check if the unit is placed yet or just a preview.
 
 func _ready() -> void:
 	# Set visual stuff
@@ -33,6 +34,12 @@ func _process(delta: float) -> void:
 		# TODO: Figure out a target in the list (most likely the closest unit) and fire at it
 		# deal_damage(closest_unit)
 		pass
+	
+	#Checking if we are in preview mode. Nothing past this should run until its out of preview.
+	if is_preview == true:
+		preview_follow()
+	else:
+		preview_follow_end()
 
 func deal_damage(receiver: Unit):
 	# Deal damge
@@ -58,3 +65,22 @@ func _on_detect_unit_area_body_exited(body: Node3D):
 			# Remove that unit from the list of enemies
 			var index = ENEMIES_IN_RANGE.find(body)
 			ENEMIES_IN_RANGE.remove_at(index)
+
+#Stuff for the ability for a preview of the model to follow. Should be in each tower made.
+func preview_follow():
+	remove_collision()
+	var parent = get_parent_node_3d()
+	if parent.get_3D_position().size() != 0:
+		position = parent.get_3D_position().get("position")
+	
+	#TODO: Make the tower change color in some way to show if placement is valid or not.
+
+func preview_follow_end():
+	add_collision()
+
+func remove_collision():
+	$Perish/PlacementDenial.set_collision_layer_value(1, false)
+	
+func add_collision():
+	$Perish/PlacementDenial.set_collision_layer_value(1, true)
+	
