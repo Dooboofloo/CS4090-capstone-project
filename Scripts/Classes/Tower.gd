@@ -70,17 +70,26 @@ func _on_detect_unit_area_body_exited(body: Node3D):
 func preview_follow():
 	remove_collision()
 	var parent = get_parent_node_3d()
+	#This should prevent calculation if no collision occurs so tower placement doesn't follow.
+	#Somehow this bugged when I was working on something and it managed to pass, so if you know why, you can fix.
 	if parent.get_3D_position().size() != 0:
 		position = parent.get_3D_position().get("position")
-	
-	#TODO: Make the tower change color in some way to show if placement is valid or not.
+		
+		#Setting color to represent if placeable or not.
+		if parent.get_3D_position().get('collider') is PlaceableArea:
+			var colorCanPlace = Color8(99, 255, 102, 106)
+			$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorCanPlace
+		else:
+			var colorNoPlace = Color8(255, 73, 68, 106)
+			$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoPlace
 
 func preview_follow_end():
 	add_collision()
 
 func remove_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, false)
-	
+	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
+
 func add_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, true)
-	
+	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false

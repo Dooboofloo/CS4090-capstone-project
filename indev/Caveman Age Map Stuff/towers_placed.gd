@@ -53,7 +53,6 @@ func placement():
 			#This part is handling placement of the tower.
 			if (result.get('collider') is PlaceableArea):
 				
-				current_preview[0].position = result.get('position')
 				current_preview[0].is_preview = false
 				current_preview.pop_front()
 				

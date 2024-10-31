@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpy1774qytj42"]
+[gd_scene load_steps=12 format=3 uid="uid://cpy1774qytj42"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_4w3op"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="1_xlshq"]
@@ -13,7 +13,14 @@ uv1_scale = Vector3(5, 5, 5)
 material = SubResource("StandardMaterial3D_ywy31")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03ka2"]
-size = Vector3(1.8, 0.1, 1.8)
+size = Vector3(1.8, 0.001, 1.8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q2bac"]
+transparency = 1
+albedo_color = Color(0.239216, 1, 0.427451, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_icd1f"]
+material = SubResource("StandardMaterial3D_q2bac")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agfrn"]
 transparency = 1
@@ -52,6 +59,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Perish/PlacementDenial"]
 shape = SubResource("BoxShape3D_03ka2")
+
+[node name="AreaPlaceableIndicator" type="MeshInstance3D" parent="Perish/PlacementDenial/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.443072, 0)
+visible = false
+mesh = SubResource("BoxMesh_icd1f")
 
 [node name="RangeIndicator" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_5srkt")
