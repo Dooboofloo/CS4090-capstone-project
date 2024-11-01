@@ -40,13 +40,15 @@ func _process(delta):
 
 
 #This holds every calculation that deals with towercoin gen. May take a dict argument later for gen rate change/bonus.
-#If you need to deduct cash then access the variable itself to do so with Currency.towerCoin.
+#Not for adding or removing towerCoins 
 func currency_calc_tower(modification: Array = []):
+	var coinGenerated = 0
 	if len(modification) == 0:
-		var coinGenerated = evaluate_generation(towerCoinGen)
-		towerCoin += coinGenerated
+		coinGenerated = evaluate_generation(towerCoinGen)
+	else:
+		coinGenerated = evaluate_generation(towerCoinGen, modification)
 	
-	#TODO: Write case for if we actually have a new generation modification
+	towerCoin += coinGenerated
 	
 	print("Current tC Balance: ", towerCoin)
 
@@ -54,16 +56,17 @@ func currency_calc_tower(modification: Array = []):
 #Calculates the correct generation value for the currency. Possible to be seperated based on currency if needed.
 func evaluate_generation(prevModifications: Array, modification: Array = []):
 	if len(modification) == 2:
-		prevModifications.append_array(modification)
+		prevModifications.append(modification)
 	elif len(modification) != 0:
 		print("ERROR!: Generation modification not added due to invalid form.")
 	
 	var generation = 0
 	
-	for mod in prevModifications:
+	for genChange in prevModifications:
 		#This is where we evaluate each modification and apply it.
-		if mod[0] == "Base":
-			generation = mod[1]
+		#Index 0 will be the Operation, and index 1 the value to do the operation with.
+		if genChange[0] == "Base":
+			generation = genChange[1]
 		
 		#TODO: Write cases for other modification types. More elif which can take things like "Add", "Multiply", etc.
 
@@ -71,13 +74,15 @@ func evaluate_generation(prevModifications: Array, modification: Array = []):
 
 
 #This holds every calculation that deals with the unit/health currency gen. Maybe take dict arg later as opt.
-#Like previous, deduct by accessing variable itself with Currency.grugarians.
+#Not for adding or removing grugarians.
 func currency_calc_unit(modification: Array = []):
+	var grugariansBorn = 0
 	if len(modification) == 0:
-		var grugariansBorn = evaluate_generation(grugarianGen)
-		grugarians += grugariansBorn
+		grugariansBorn = evaluate_generation(grugarianGen)
+	else:
+		grugariansBorn = evaluate_generation(grugarianGen, modification)
 	
-	#TODO: Write case for if we actually have a new generation modification
+	grugarians += grugariansBorn
 	
 	print("Current Grugarian Population: ", grugarians)
 
