@@ -10,12 +10,15 @@ extends Node3D
 
 @onready var cooldown = 1 / atk_speed
 
+@export var towerCost: int = 10 #I expect this to change. This is just tower cost to place.
+
 @onready var unit_detection_area = $DetectUnitArea
 @onready var unit_detection_shape = $DetectUnitArea/DetectUnitCollisionShape
 @onready var cooldown_timer = $CooldownTimer
 
 var ENEMIES_IN_RANGE = [] # A list of enemies that are currently in range
 var is_preview = false #Variable for us to check if the unit is placed yet or just a preview.
+var placeable = false #Variable for us to know if the tower can be placed or not.
 
 func _ready() -> void:
 	# Set visual stuff
@@ -35,7 +38,7 @@ func _process(delta: float) -> void:
 		# deal_damage(closest_unit)
 		pass
 	
-	#Checking if we are in preview mode. Nothing past this should run until its out of preview.
+	#Checking if we are in preview mode. Nothing should run until its out of preview and placed.
 	if is_preview == true:
 		preview_follow()
 	else:
@@ -75,13 +78,21 @@ func preview_follow():
 	if parent.get_3D_position().size() != 0:
 		position = parent.get_3D_position().get("position")
 		
+		#Having the tower check itself if it can be placed.
+		var validArea = parent.get_3D_position().get('collider') is PlaceableArea
 		#Setting color to represent if placeable or not.
-		if parent.get_3D_position().get('collider') is PlaceableArea:
+		if validArea and (Currency.towerCoin >= towerCost): #Can place and buy
 			var colorCanPlace = Color8(99, 255, 102, 106)
 			$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorCanPlace
-		else:
-			var colorNoPlace = Color8(255, 73, 68, 106)
-			$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoPlace
+			placeable = true
+		else: #Non placeable states.
+			if validArea: #Can place can't buy
+				var colorNoCoin = Color8(255, 200, 52, 106)
+				$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoCoin
+			else: #Can't place
+				var colorNoPlace = Color8(255, 73, 68, 106)
+				$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoPlace
+			placeable = false
 
 func preview_follow_end():
 	add_collision()

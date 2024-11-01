@@ -23,6 +23,9 @@ func preview_placement(model_path):
 	#preventing it from trying to calculate position if ray collides with nothing. (Crashes if not here)
 	if result.size() != 0:
 	#This should be hooked up to when button is pressed. This handles generation of preview model.
+	#TODO: When this is hooked up to a button, this should replace active preview with new one.	
+	#preview_cancel()
+	
 		if current_preview.is_empty():
 			#Preloading scene with our model
 			var model = preload("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
@@ -38,10 +41,15 @@ func preview_placement(model_path):
 			
 			print("Preview Start")
 			
-		#TODO: When this is hooked up to a button, this should replace active preview with new one.
 
+
+#If preview is canceled or another button is clicked, this removes current preview in world.
+func preview_cancel():
+	var towerPreview = current_preview.pop_front()
+	towerPreview.queue_free()
 
 #Handles checking if the placement is valid and stopping the "preview" (makes tower no longer move)
+#This is not handled by the tower itself as if we did that we would get lots firing on left click input.
 func placement():
 	#We first check to see if they even have a tower to place.
 	if !current_preview.is_empty():
@@ -51,23 +59,27 @@ func placement():
 		#Preventing it from trying to calculate position if ray collides with nothing. (Crashes if not here)
 		if result.size() != 0:
 			#This part is handling placement of the tower.
-			if (result.get('collider') is PlaceableArea):
+			if (current_preview[0].placeable):
 				
 				current_preview[0].is_preview = false
+				Currency.pay_towerCoin(current_preview[0].towerCost)
 				current_preview.pop_front()
 				
 				print("Placement Complete!")
 			else:
-				print("Invalid placement location.")
+				print("Invalid placement location / Not enough Tower Coin.")
 		else:
 			print("No ray collision, preventing calculations.")
 	else:
 		print("No preview is active, no tower to place.")
 
+
 func _input(event):
 	#Attempt tower placement if left click occurs.
 	if Input.is_action_just_pressed("left_click"):
 		placement()
+	elif Input.is_action_just_pressed("place_cancel") and !current_preview.is_empty():
+		preview_cancel()
 
 
 func get_3D_position():

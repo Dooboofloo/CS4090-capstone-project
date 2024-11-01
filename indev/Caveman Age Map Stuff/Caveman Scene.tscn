@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b5a6xtrjxtvvi"]
+[gd_scene load_steps=40 format=3 uid="uid://b5a6xtrjxtvvi"]
 
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_ab1jw"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="1_m807l"]
@@ -65,7 +65,7 @@ size = Vector3(1, 0.5, 31)
 size = Vector3(21, 0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vegb0"]
-albedo_color = Color(0.913725, 0.737255, 0.352941, 1)
+albedo_color = Color(1, 0.807843, 0.356863, 1)
 albedo_texture = ExtResource("2_y8qd7")
 uv1_triplanar = true
 
@@ -73,23 +73,23 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_vegb0")
 size = Vector3(21, 0.5, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf8yw"]
-size = Vector3(1, 0.5, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_x78t8"]
+size = Vector3(1, 0.5, 35.499)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cafu"]
-albedo_color = Color(0.894118, 0.74902, 0.384314, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn38e"]
+albedo_color = Color(1, 0.807843, 0.356863, 1)
 albedo_texture = ExtResource("2_y8qd7")
 uv1_triplanar = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_1e6pg"]
-material = SubResource("StandardMaterial3D_3cafu")
-size = Vector3(1, 0.5, 35.5)
+[sub_resource type="BoxMesh" id="BoxMesh_lu7li"]
+material = SubResource("StandardMaterial3D_xn38e")
+size = Vector3(1, 0.5, 35.499)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4ftn"]
 size = Vector3(20, 0.414063, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1euk3"]
-albedo_color = Color(0.807843, 0.678431, 0.368627, 1)
+albedo_color = Color(1, 0.807843, 0.356863, 1)
 albedo_texture = ExtResource("2_y8qd7")
 uv1_triplanar = true
 
@@ -101,13 +101,25 @@ size = Vector3(20, 0.5, 1)
 size = Vector3(1.11148, 0.35434, 53.0883)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hsv3"]
-albedo_color = Color(0.788235, 0.690196, 0.4, 1)
+albedo_color = Color(1, 0.807843, 0.356863, 1)
 albedo_texture = ExtResource("2_y8qd7")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_25bo8"]
 material = SubResource("StandardMaterial3D_5hsv3")
 size = Vector3(1, 0.5, 53)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdui8"]
+size = Vector3(1, 0.5, 35.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_squyb"]
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("2_y8qd7")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cjnxb"]
+material = SubResource("StandardMaterial3D_squyb")
+size = Vector3(1, 0.5, 35.5)
 
 [sub_resource type="Curve3D" id="Curve3D_swcr6"]
 _data = {
@@ -127,7 +139,7 @@ material = SubResource("StandardMaterial3D_2pf62")
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4eb2"]
 size = Vector3(60, 0.5, 60)
 
-[node name="Caveman Map outline" type="Node3D"]
+[node name="Caveman Map" type="Node3D"]
 script = ExtResource("1_ab1jw")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -190,11 +202,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180244, 0, 0)
 mesh = SubResource("BoxMesh_lqw7e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Path Left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9856, -4.76837e-07, 1.25197)
-shape = SubResource("BoxShape3D_yf8yw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.992, 0, 1.25)
+shape = SubResource("BoxShape3D_x78t8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Left/CollisionShape3D3"]
-mesh = SubResource("BoxMesh_1e6pg")
+mesh = SubResource("BoxMesh_lu7li")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Path Left"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4924, 0, 19.4992)
@@ -232,10 +244,10 @@ mesh = SubResource("BoxMesh_lqw7e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Path Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.992, 0.042, 1.252)
-shape = SubResource("BoxShape3D_yf8yw")
+shape = SubResource("BoxShape3D_rdui8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D3"]
-mesh = SubResource("BoxMesh_1e6pg")
+mesh = SubResource("BoxMesh_cjnxb")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Path Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.492, 0.042, 19.499)

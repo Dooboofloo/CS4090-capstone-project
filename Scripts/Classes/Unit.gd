@@ -9,6 +9,8 @@ enum ALIGNMENT {ENEMY, ALLY}
 @export var damage: int = 1
 @export var health: int = 5
 
+@export var cost: int = 7 #Cost for unit to be placed. Only matters for player deployment.
+
 var IS_MOVING = false
 var PATH_TO_FOLLOW = null
 
@@ -53,5 +55,9 @@ func die():
 func crash_castle():
 	# TODO
 	# for now just kill it and print a message
+	
+	#If population is health, remove grugarians based on dmg or a calc of dmg, cost, hp (cost & hp = condition/skill).
+	#If population is not health, same thing but remove basehealth. Currency.pay_grugarians(int)
+	
 	print("Castle Crashed!")
 	die()
