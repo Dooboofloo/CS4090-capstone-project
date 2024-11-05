@@ -25,7 +25,7 @@ func _ready():
 func _process(delta):
 	#not doing calculation unless current scene is a map.
 	#This check will change when more maps are in. Prob use an array with all map scene map node names.
-	if get_tree().root.get_child(-1).get_name() == "Caveman Map":
+	if get_tree().current_scene.name == "Caveman Map":
 		var currentTime = Time.get_ticks_msec()
 		#Checking to see if one second has passed.
 		if (currentTime - startTime) >= genInterval:
@@ -50,7 +50,7 @@ func currency_calc_tower(modification: Array = []):
 	
 	towerCoin += coinGenerated
 	
-	print("Current tC Balance: ", towerCoin)
+	#print("Current tC Balance: ", towerCoin)
 
 
 #Calculates the correct generation value for the currency. Possible to be seperated based on currency if needed.
@@ -84,7 +84,7 @@ func currency_calc_unit(modification: Array = []):
 	
 	grugarians += grugariansBorn
 	
-	print("Current Grugarian Population: ", grugarians)
+	#print("Current Grugarian Population: ", grugarians)
 
 
 #Function for any REMOVAL of towerCoin from player.

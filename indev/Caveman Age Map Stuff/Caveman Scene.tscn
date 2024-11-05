@@ -1,9 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://b5a6xtrjxtvvi"]
+[gd_scene load_steps=38 format=3 uid="uid://b5a6xtrjxtvvi"]
 
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_ab1jw"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="1_m807l"]
 [ext_resource type="Texture2D" uid="uid://b0w4ffyh86e3g" path="res://indev/Caveman Age Map Stuff/texture_07.png" id="2_y8qd7"]
-[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="4_304is"]
+[ext_resource type="Script" path="res://Scripts/Classes/PathManager.gd" id="4_63g6b"]
 [ext_resource type="Script" path="res://Scripts/Classes/PlaceableArea.gd" id="5_5hvbv"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/towers_placed.gd" id="5_p30b2"]
 
@@ -127,14 +127,6 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 10
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pf62"]
-albedo_texture = ExtResource("4_304is")
-normal_scale = -0.18
-uv1_scale = Vector3(3, 2, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sji6m"]
-material = SubResource("StandardMaterial3D_2pf62")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_s4eb2"]
 size = Vector3(60, 0.5, 60)
@@ -264,17 +256,10 @@ shape = SubResource("BoxShape3D_dpjka")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0271282, 0.0212278, -0.00834656)
 mesh = SubResource("BoxMesh_25bo8")
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="PathManager" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752068, 0)
 curve = SubResource("Curve3D_swcr6")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-unique_name_in_owner = true
-transform = Transform3D(-0.999924, 0, 0.000270974, 0, 1, 0, -0.000270974, 0, -0.999923, 19.9924, 0, -47.9903)
-loop = false
-
-[node name="Test Unit" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
-mesh = SubResource("BoxMesh_sji6m")
+script = ExtResource("4_63g6b")
 
 [node name="Placeable_Area" type="Area3D" parent="."]
 script = ExtResource("5_5hvbv")

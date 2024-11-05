@@ -70,6 +70,7 @@ mesh = SubResource("CylinderMesh_5srkt")
 
 [node name="DetectUnitArea" type="Area3D" parent="."]
 collision_layer = 2
+collision_mask = 4
 
 [node name="DetectUnitCollisionShape" type="CollisionShape3D" parent="DetectUnitArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

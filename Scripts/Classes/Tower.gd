@@ -10,7 +10,7 @@ extends Node3D
 
 @onready var cooldown = 1 / atk_speed
 
-@export var towerCost: int = 10 #I expect this to change. This is just tower cost to place.
+@export var towerCost: int = 1 #I expect this to change. This is just tower cost to place.
 
 @onready var unit_detection_area = $DetectUnitArea
 @onready var unit_detection_shape = $DetectUnitArea/DetectUnitCollisionShape
@@ -29,14 +29,18 @@ func _ready() -> void:
 	unit_detection_shape.shape.radius = range
 	cooldown_timer.wait_time = cooldown
 	
-	unit_detection_area
+	# Connect signals
+	unit_detection_area.connect("body_entered", _on_detect_unit_area_body_entered)
+	unit_detection_area.connect("body_exited", _on_detect_unit_area_body_exited)
 
 func _process(delta: float) -> void:
 	
 	if cooldown_timer.is_stopped() and len(ENEMIES_IN_RANGE) > 0:
-		# TODO: Figure out a target in the list (most likely the closest unit) and fire at it
-		# deal_damage(closest_unit)
-		pass
+		print("Pew!")
+		
+		ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(a.global_position) )
+		var closest_unit = ENEMIES_IN_RANGE[0]
+		deal_damage(closest_unit)
 	
 	#Checking if we are in preview mode. Nothing should run until its out of preview and placed.
 	if is_preview == true:
@@ -45,7 +49,7 @@ func _process(delta: float) -> void:
 		preview_follow_end()
 
 func deal_damage(receiver: Unit):
-	# Deal damge
+	# Deal damage
 	receiver.take_damage(damage)
 	
 	# Start a cooldown after attacking
@@ -56,17 +60,20 @@ func destroy():
 	self.queue_free()
 
 func _on_detect_unit_area_body_entered(body: Node3D):
-	if body is Unit:
+	var unit = body.get_parent()
+	if unit is Unit:
+		print("ADDING NEW UNIT TO RANGE")
 		# Add that unit to list of enemies
-		ENEMIES_IN_RANGE.append(body)
+		ENEMIES_IN_RANGE.append(unit)
 
 func _on_detect_unit_area_body_exited(body: Node3D):
-	if body is Unit:
-		if body in ENEMIES_IN_RANGE:
+	var unit = body.get_parent()
+	if unit is Unit:
+		if unit in ENEMIES_IN_RANGE:
 			# Not actually sure if this works
-			
+			print("REMOVING UNIT FROM RANGE")
 			# Remove that unit from the list of enemies
-			var index = ENEMIES_IN_RANGE.find(body)
+			var index = ENEMIES_IN_RANGE.find(unit)
 			ENEMIES_IN_RANGE.remove_at(index)
 
 #Stuff for the ability for a preview of the model to follow. Should be in each tower made.
@@ -100,7 +107,14 @@ func preview_follow_end():
 func remove_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, false)
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
+	
+	#$DetectUnitArea.monitoring = false
 
 func add_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, true)
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false
+	
+	#$DetectUnitArea.monitoring = true
+
+# TODO: Fix issues related to placement. Currently, the "preview" tower is actually functioning with the detect unit area monitoring
+# After placement, the detect unit area is not detecting bodies entering or exiting for some reason

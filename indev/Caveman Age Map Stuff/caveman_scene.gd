@@ -12,16 +12,17 @@ func _process(delta):
 
 
 #Just to have the test unit move along the path. Probably use this idea for other units?
-var forward = true
+#var forward = true
 func _physics_process(delta):
-	const move_speed := 15.0 #Sets the type to whatever it is being set equal to
-	
-	if %PathFollow3D.progress_ratio == 1:
-		forward = false
-	elif %PathFollow3D.progress_ratio == 0:
-		forward = true
-	
-	if forward == true:
-		%PathFollow3D.progress += move_speed * delta
-	elif forward == false:
-		%PathFollow3D.progress -= move_speed * delta
+	#const move_speed := 15.0 #Sets the type to whatever it is being set equal to
+	#
+	#if %PathFollow3D.progress_ratio == 1:
+		#forward = false
+	#elif %PathFollow3D.progress_ratio == 0:
+		#forward = true
+	#
+	#if forward == true:
+		#%PathFollow3D.progress += move_speed * delta
+	#elif forward == false:
+		#%PathFollow3D.progress -= move_speed * delta
+	pass

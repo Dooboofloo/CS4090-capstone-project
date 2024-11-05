@@ -15,14 +15,14 @@ var IS_MOVING = false
 var PATH_TO_FOLLOW = null
 
 func _ready() -> void:
-	pass
+	self.loop = false
 
 func _process(delta: float) -> void:
 	if IS_MOVING and PATH_TO_FOLLOW != null:
 		self.progress += move_speed * delta
 		
 		# If a unit makes it to its destination...
-		if self.progress >= 1.0:
+		if self.progress_ratio >= 1.0:
 			
 			if alignment == ALIGNMENT.ENEMY:
 				# if that unit is an enemy, crash the castle
@@ -50,6 +50,7 @@ func take_damage(amount: int):
 		die()
 
 func die():
+	print("Died")
 	self.queue_free()
 
 func crash_castle():
