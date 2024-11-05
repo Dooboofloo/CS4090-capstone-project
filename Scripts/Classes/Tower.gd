@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	if is_preview == true:
 		preview_follow()
 	else:
-		preview_follow_end()
+		preview_follow_end() # TODO: Move this elsewhere so it's only called once
 
 func deal_damage(receiver: Unit):
 	# Deal damage
@@ -78,7 +78,7 @@ func _on_detect_unit_area_body_exited(body: Node3D):
 
 #Stuff for the ability for a preview of the model to follow. Should be in each tower made.
 func preview_follow():
-	remove_collision()
+	remove_collision() # TODO: stop calling this every frame
 	var parent = get_parent_node_3d()
 	#This should prevent calculation if no collision occurs so tower placement doesn't follow.
 	#Somehow this bugged when I was working on something and it managed to pass, so if you know why, you can fix.
@@ -108,13 +108,13 @@ func remove_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, false)
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
 	
-	#$DetectUnitArea.monitoring = false
+	$DetectUnitArea.monitoring = false
 
 func add_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, true)
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false
 	
-	#$DetectUnitArea.monitoring = true
+	$DetectUnitArea.monitoring = true
 
 # TODO: Fix issues related to placement. Currently, the "preview" tower is actually functioning with the detect unit area monitoring
 # After placement, the detect unit area is not detecting bodies entering or exiting for some reason
