@@ -20,6 +20,11 @@ var ENEMIES_IN_RANGE = [] # A list of enemies that are currently in range
 var is_preview = false #Variable for us to check if the unit is placed yet or just a preview.
 var placeable = false #Variable for us to know if the tower can be placed or not.
 
+#This variable allows us to only addcollision and removecollision once, rather than every delta like it was before.
+#Since there is an order to it I just make it count down and check the value to see if we call the funciton.
+#removecollision sees this is 2 and then runs that function, decrements to 1. addcollision sees 1, runs, decrements.
+var only_once = 2
+
 func _ready() -> void:
 	# Set visual stuff
 	$RangeIndicator.mesh.top_radius = range - 0.5
@@ -42,11 +47,13 @@ func _process(delta: float) -> void:
 		var closest_unit = ENEMIES_IN_RANGE[0]
 		deal_damage(closest_unit)
 	
-	#Checking if we are in preview mode. Nothing should run until its out of preview and placed.
+	#Checking if we are in preview mode.
 	if is_preview == true:
 		preview_follow()
-	else:
-		preview_follow_end() # TODO: Move this elsewhere so it's only called once
+	#TODO: If you have a better idea for this only to be called once, change this!
+	elif (is_preview == false) and (only_once == 1):
+		preview_follow_end() 
+		only_once -= 1
 
 func deal_damage(receiver: Unit):
 	# Deal damage
@@ -78,7 +85,12 @@ func _on_detect_unit_area_body_exited(body: Node3D):
 
 #Stuff for the ability for a preview of the model to follow. Should be in each tower made.
 func preview_follow():
-	remove_collision() # TODO: stop calling this every frame
+	
+	#TODO: Change this to a better way of only calling once if you have a better idea
+	if only_once == 2:
+		remove_collision()
+		only_once -= 1
+	
 	var parent = get_parent_node_3d()
 	#This should prevent calculation if no collision occurs so tower placement doesn't follow.
 	#Somehow this bugged when I was working on something and it managed to pass, so if you know why, you can fix.
@@ -104,6 +116,7 @@ func preview_follow():
 func preview_follow_end():
 	add_collision()
 
+
 func remove_collision():
 	$Perish/PlacementDenial.set_collision_layer_value(1, false)
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
@@ -115,6 +128,3 @@ func add_collision():
 	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false
 	
 	$DetectUnitArea.monitoring = true
-
-# TODO: Fix issues related to placement. Currently, the "preview" tower is actually functioning with the detect unit area monitoring
-# After placement, the detect unit area is not detecting bodies entering or exiting for some reason

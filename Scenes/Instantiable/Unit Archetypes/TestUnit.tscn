@@ -16,10 +16,10 @@ loop = false
 script = ExtResource("1_76vbh")
 move_speed = 30.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("BoxShape3D_v8kjh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
