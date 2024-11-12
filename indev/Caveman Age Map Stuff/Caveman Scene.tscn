@@ -296,3 +296,4 @@ layout_mode = 2
 text = "Currency: 0"
 
 [connection signal="pressed" from="UI/HBoxContainer/PlaceTowerBtn" to="UI" method="_on_place_tower_btn_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/SendUnitBtn" to="UI" method="_on_send_unit_btn_pressed"]
