@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b5a6xtrjxtvvi"]
+[gd_scene load_steps=39 format=3 uid="uid://b5a6xtrjxtvvi"]
 
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_ab1jw"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="1_m807l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Classes/PathManager.gd" id="4_63g6b"]
 [ext_resource type="Script" path="res://Scripts/Classes/PlaceableArea.gd" id="5_5hvbv"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/towers_placed.gd" id="5_p30b2"]
+[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/ui.gd" id="7_w6jmp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vclh2"]
 sky_top_color = Color(0, 0.397557, 0.629019, 1)
@@ -168,6 +169,7 @@ mesh = SubResource("BoxMesh_la38d")
 
 [node name="Player Base Location" type="StaticBody3D" parent="."]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 19.8895, 3.52786, 52.4859)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Base Location"]
 shape = SubResource("BoxShape3D_hdowp")
@@ -270,3 +272,23 @@ shape = SubResource("BoxShape3D_s4eb2")
 
 [node name="TowersPlaced" type="Node3D" parent="."]
 script = ExtResource("5_p30b2")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("7_w6jmp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 2
+
+[node name="PlaceTowerBtn" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Place Tower"
+
+[node name="SendUnitBtn" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Send Unit"
+
+[node name="Label" type="Label" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Currency: 0"
