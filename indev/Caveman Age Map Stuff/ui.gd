@@ -4,21 +4,6 @@ extends CanvasLayer
 var towers_placed_script: Node = null
 var path_manager: Node = null
 
-'''
-func send_unit():
-	var unit_scene = preload("res://Scenes/Instantiable/Unit Archetypes/TestUnit.tscn")	
-	var unit_instance = unit_scene.instantiate() as Unit 
-	
-	if Currency.grugarians >= unit_instance.cost:
-		Currency.pay_grugarians(unit_instance.cost)
-		unit_instance.alignment = Unit.ALIGNMENT.ALLY
-		unit_instance.start_path(get_parent().get_node("Path Left") as Path3D)
-		get_parent().add_child(unit_instance)
-		print("RAHHHH!!!")
-	else:
-		print("Not Enough Grugarians to send!")
-'''
-
 func _ready():
 	# Get the TowersPlaced node
 	towers_placed_script = get_parent().get_node("TowersPlaced")
