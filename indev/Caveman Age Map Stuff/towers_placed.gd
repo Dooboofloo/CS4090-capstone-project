@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	var model_path = "res://indev/Caveman Age Map Stuff/DummyTower.tscn"
 	#This should be removed later as it will only be called when button is presed.
-	preview_placement(model_path)
+	# preview_placement(model_path)
 
 
 #TODO: This should be called by the button when pressed. Boots up preview.
@@ -40,7 +40,9 @@ func preview_placement(model_path):
 			current_preview[0].is_preview = true
 			
 			print("Preview Start")
-			
+		else:
+			print("Debug: not empty ")
+			print(current_preview)
 
 
 #If preview is canceled or another button is clicked, this removes current preview in world.

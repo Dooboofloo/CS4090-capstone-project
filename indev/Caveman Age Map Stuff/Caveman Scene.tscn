@@ -283,12 +283,16 @@ alignment = 2
 
 [node name="PlaceTowerBtn" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
-text = "Place Tower"
+text = "Place Tower
+cost: 1 Tower Coin"
 
 [node name="SendUnitBtn" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
-text = "Send Unit"
+text = "Send Unit
+cost: 1 grugarian"
 
 [node name="Label" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
 text = "Currency: 0"
+
+[connection signal="pressed" from="UI/HBoxContainer/PlaceTowerBtn" to="UI" method="_on_place_tower_btn_pressed"]
