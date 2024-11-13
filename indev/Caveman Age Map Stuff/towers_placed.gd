@@ -10,21 +10,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var model_path = "res://indev/Caveman Age Map Stuff/DummyTower.tscn"
-	#This should be removed later as it will only be called when button is presed.
-	# preview_placement(model_path)
+	pass
 
 
-#TODO: This should be called by the button when pressed. Boots up preview.
+#Boots up preview of selected tower.
 func preview_placement(model_path):
 	#Using 3D position function to get our raycast query.
 	var result = get_3D_position()
 	
 	#preventing it from trying to calculate position if ray collides with nothing. (Crashes if not here)
 	if result.size() != 0:
-	#This should be hooked up to when button is pressed. This handles generation of preview model.
-	#TODO: When this is hooked up to a button, this should replace active preview with new one.	
-	#preview_cancel()
 	
 		if current_preview.is_empty():
 			#Preloading scene with our model
@@ -43,6 +38,24 @@ func preview_placement(model_path):
 		else:
 			print("Debug: not empty ")
 			print(current_preview)
+	#Handling clicking of button when no raycast is possible as its based on cursor.
+	else:
+		if current_preview.is_empty():
+			#Preloading scene with our model
+			var model = preload("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
+			#Duplicating the object
+			var newTower = model.instantiate()
+			#Setting location where it should appear if button is not in playable area
+			var safePosition = %Camera3D.position
+			safePosition[1] =  0 
+			newTower.position = safePosition
+			#Adding the tower to the scene.
+			add_child(newTower)
+			current_preview.append(newTower)
+			
+			current_preview[0].is_preview = true
+			
+			print("Preview Start")
 
 
 #If preview is canceled or another button is clicked, this removes current preview in world.
@@ -65,7 +78,7 @@ func placement():
 				
 				current_preview[0].is_preview = false
 				Currency.pay_towerCoin(current_preview[0].towerCost)
-				current_preview.pop_front()
+				current_preview.pop_back()
 				
 				print("Placement Complete!")
 			else:
@@ -77,8 +90,8 @@ func placement():
 
 
 func _input(event):
-	#Attempt tower placement if left click occurs.
-	if Input.is_action_just_pressed("left_click"):
+	#Attempt tower placement if left click occurs and preview exists.
+	if Input.is_action_just_pressed("left_click") and !current_preview.is_empty():
 		placement()
 	elif Input.is_action_just_pressed("place_cancel") and !current_preview.is_empty():
 		preview_cancel()

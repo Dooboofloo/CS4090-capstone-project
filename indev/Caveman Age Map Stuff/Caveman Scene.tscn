@@ -21,6 +21,8 @@ background_mode = 2
 sky = SubResource("Sky_up5e2")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+glow_enabled = true
+glow_intensity = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8s7k"]
 albedo_texture = ExtResource("2_y8qd7")
@@ -169,7 +171,6 @@ mesh = SubResource("BoxMesh_la38d")
 
 [node name="Player Base Location" type="StaticBody3D" parent="."]
 transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 19.8895, 3.52786, 52.4859)
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player Base Location"]
 shape = SubResource("BoxShape3D_hdowp")
