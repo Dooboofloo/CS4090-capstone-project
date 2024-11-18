@@ -21,6 +21,13 @@ func _on_send_unit_btn_pressed() -> void:
 	path_manager.spawn_unit()
 	print("RAHHH!!!")
 
+# Handle Keymapping Events
+func _input(event):
+	if event.is_action("place_tower"):
+		_on_place_tower_btn_pressed()
+	if event.is_action("send_unit"):
+		_on_send_unit_btn_pressed()
+
 # Refresh UI 
 func _process(delta):
 	update_currency_display()
