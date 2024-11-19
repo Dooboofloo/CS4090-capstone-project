@@ -6,7 +6,7 @@ extends Node3D
 @export var tower_name: String
 @export var damage: int = 1
 @export var atk_speed: float = 2.0 # ex. atk speed 2 = 2 shots/second = 0.5 cooldown
-@export var range: float = 5.0
+@export var atk_range: float = 5.0
 
 @onready var cooldown = 1 / atk_speed
 
@@ -48,12 +48,12 @@ func _ready() -> void:
 	unit_detection_area.connect("body_entered", _on_detect_unit_area_body_entered)
 	unit_detection_area.connect("body_exited", _on_detect_unit_area_body_exited)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	if cooldown_timer.is_stopped() and len(ENEMIES_IN_RANGE) > 0:
 		print("Pew!")
 		
-		ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(a.global_position) )
+		ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position) )
 		var closest_unit = ENEMIES_IN_RANGE[0]
 		deal_damage(closest_unit)
 	
@@ -167,7 +167,7 @@ func upgrade_tower():
 				if stats[i] == "Damage":
 					damage += changes[i]
 				elif stats[i] == "Range":
-					range += changes[i]
+					atk_range += changes[i]
 					update_range()
 				elif stats[i] == "Attack Speed":
 					atk_speed += changes[i]
@@ -184,7 +184,7 @@ func upgrade_tower():
 #Below is all the stuff for detecting mouse actions to control upgrade indicator and upgrade attempt.
 
 #Double clicking tower should attempt upgrade if not preview. Based on if they click the tower.
-func _on_perish_input_event(camera, event, event_position, normal, shape_idx):
+func _on_perish_input_event(_camera, event, _event_position, _normal, _shape_idx):
 	if event is InputEventMouseButton and is_preview == false:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click == true:
 			var upgradeCostSize = len(upgrade_cost)
@@ -239,8 +239,8 @@ func update_upgrade_indicator():
 #NOTE: This will need to change with range shape as this is built for a circle.
 func update_range():
 	# Set visual stuff
-	$RangeIndicator.mesh.top_radius = range - 0.5
-	$RangeIndicator.mesh.bottom_radius = range
+	$RangeIndicator.mesh.top_radius = atk_range - 0.5
+	$RangeIndicator.mesh.bottom_radius = atk_range
 	
 	# Set gameplay stuff
-	unit_detection_shape.shape.radius = range
+	unit_detection_shape.shape.radius = atk_range

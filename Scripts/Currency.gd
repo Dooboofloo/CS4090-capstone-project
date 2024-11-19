@@ -22,7 +22,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#not doing calculation unless current scene is a map.
 	#This check will change when more maps are in. Prob use an array with all map scene map node names.
 	if get_tree().current_scene.name == "Caveman Map":

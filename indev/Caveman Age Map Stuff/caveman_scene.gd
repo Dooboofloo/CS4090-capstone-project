@@ -7,13 +7,13 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 #Just to have the test unit move along the path. Probably use this idea for other units?
 #var forward = true
-func _physics_process(delta):
+func _physics_process(_delta):
 	#const move_speed := 15.0 #Sets the type to whatever it is being set equal to
 	#
 	#if %PathFollow3D.progress_ratio == 1:

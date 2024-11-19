@@ -9,12 +9,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
 #Boots up preview of selected tower.
-func preview_placement(model_path):
+func preview_placement(_model_path):
 	#Using 3D position function to get our raycast query.
 	var result = get_3D_position()
 	
@@ -89,7 +89,7 @@ func placement():
 		print("No preview is active, no tower to place.")
 
 
-func _input(event):
+func _input(_event):
 	#Attempt tower placement if left click occurs and preview exists.
 	if Input.is_action_just_pressed("left_click") and !current_preview.is_empty():
 		placement()

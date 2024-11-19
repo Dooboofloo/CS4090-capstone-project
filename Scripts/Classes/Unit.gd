@@ -9,7 +9,7 @@ enum ALIGNMENT {ENEMY, ALLY}
 @export var damage: int = 1
 @export var health: int = 5
 
-@export var cost: int = 7 #Cost for unit to be placed. Only matters for player deployment.
+@export var cost: int = 7 # Cost for unit to be placed. Only matters for player deployment.
 
 var IS_MOVING = false
 var PATH_TO_FOLLOW = null
@@ -19,18 +19,22 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if IS_MOVING and PATH_TO_FOLLOW != null:
-		self.progress += move_speed * delta
-		
-		# If a unit makes it to its destination...
-		if self.progress_ratio >= 1.0:
+		if self.alignment == ALIGNMENT.ENEMY:
+			# Unit is an enemy
+			self.progress += move_speed * delta
 			
-			if alignment == ALIGNMENT.ENEMY:
-				# if that unit is an enemy, crash the castle
+			# If an enemy makes it to its destination...
+			if self.progress_ratio >= 1.0:
 				crash_castle()
-			else:
-				# otherwise... do something else?
-				# TODO: Determine reward for player's units completing their track
-				pass
+		else:
+			# Unit is an ally
+			self.progress -= move_speed * delta
+			
+			if self.progress_ratio <= 0.0:
+				# TODO: Figure out what to do when an allied unit makes it to end of path
+				print("Yeah we uhhhh crashed the enemy castle yuh")
+				die()
+
 
 func start_path(path: Path3D):
 	# Only add self to the path if it hasn't been added before
@@ -39,6 +43,9 @@ func start_path(path: Path3D):
 		path.add_child(self) # Add self to path's children, then start moving
 		
 		IS_MOVING = true
+		
+		if self.alignment == ALIGNMENT.ALLY:
+			self.progress = 1.0 # Allies move "backwards" down the path
 
 # Function for doing damage to other unit
 func deal_damage(receiver: Unit):
@@ -46,6 +53,7 @@ func deal_damage(receiver: Unit):
 
 func take_damage(amount: int):
 	health -= amount
+	
 	if health <= 0:
 		die()
 

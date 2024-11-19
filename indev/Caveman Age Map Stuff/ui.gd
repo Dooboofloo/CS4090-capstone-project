@@ -49,14 +49,14 @@ func yap(message: String):
 		message_container.newline()
 
 # Refresh UI 
-func _process(delta):
+func _process(_delta):
 	update_currency_display()
 	
 # Utility funciton
 func get_timestamp():
 	var now = Time.get_time_dict_from_system()
-	var timestamp = "%02d:02d:02d" % [now.hour, now.minute, now.second]
-	return "%02d:%02d:%02d" % [now.hour, now.minute, now.second]
+	var timestamp = "%02d:%02d:%02d" % [now.hour, now.minute, now.second]
+	return timestamp
 
 # returns a random warcry 
 func warcry():
