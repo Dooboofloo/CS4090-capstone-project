@@ -221,7 +221,7 @@ func _on_perish_mouse_exited():
 #Sees current status of currency and updates upgrade status indicator based on it.
 func update_upgrade_indicator():
 	var upgradeCostSize = len(upgrade_cost)
-	var upgradeIndicator = $"Upgrade Indicator/MeshInstance3D"
+	var upgradeIndicator = $"Upgrade Indicator"
 	
 	if upgradeCostSize == 0: #There are no upgrades remaining
 		var goldColor = Color8(255, 255, 0, 255)

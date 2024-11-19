@@ -98,14 +98,11 @@ shape = SubResource("CylinderShape3D_owd2w")
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Upgrade Indicator" type="StaticBody3D" parent="."]
+[node name="Upgrade Indicator" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75998, 0)
 visible = false
-collision_layer = 2
-input_ray_pickable = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Upgrade Indicator"]
 mesh = SubResource("SphereMesh_ti18x")
+skeleton = NodePath("")
 
 [connection signal="input_event" from="Perish" to="." method="_on_perish_input_event"]
 [connection signal="mouse_entered" from="Perish" to="." method="_on_perish_mouse_entered"]
