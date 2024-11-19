@@ -1,4 +1,6 @@
 # ALL TOWERS MUST HAVE DetectUnitArea ON LAYER 2 FOR COLLISION. This stops tower placement from being affected by it.
+# CRITICAL TODO: tower upgrades currently upgrade ALL TOWERS AT ONCE! Must make unit placements UNIQUE
+# ALSO, preview tower un-upgrades (related issue)
 
 class_name Tower
 extends Node3D
@@ -60,7 +62,7 @@ func _process(_delta: float) -> void:
 	#Checking if we are in preview mode.
 	if is_preview == true:
 		preview_follow()
-	#TODO: If you have a better idea for this only to be called once, change this!
+		#TODO: If you have a better idea for this only to be called once, change this!
 	elif (is_preview == false) and (only_once == 1):
 		preview_follow_end() 
 		only_once -= 1
@@ -83,9 +85,10 @@ func destroy():
 func _on_detect_unit_area_body_entered(body: Node3D):
 	var unit = body.get_parent()
 	if unit is Unit:
-		print("ADDING NEW UNIT TO RANGE")
-		# Add that unit to list of enemies
-		ENEMIES_IN_RANGE.append(unit)
+		if unit.alignment == Unit.ALIGNMENT.ENEMY:
+			print("ADDING NEW UNIT TO RANGE")
+			# Add that unit to list of enemies
+			ENEMIES_IN_RANGE.append(unit)
 
 func _on_detect_unit_area_body_exited(body: Node3D):
 	var unit = body.get_parent()

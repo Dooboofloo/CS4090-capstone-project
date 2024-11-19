@@ -3,37 +3,52 @@ extends PathFollow3D
 
 enum ALIGNMENT {ENEMY, ALLY}
 
+@onready var unit_collision_area = $UnitCollisionArea
+
 @export var unit_name: String
 @export var alignment: ALIGNMENT
-@export var move_speed: float = 10.0
+@export var move_speed: float = 5.0
 @export var damage: int = 1
 @export var health: int = 5
 
 @export var cost: int = 7 # Cost for unit to be placed. Only matters for player deployment.
 
+var velocity = 0
+
 var IS_MOVING = false
 var PATH_TO_FOLLOW = null
 
+var IS_FIGHTING = false
+var CLASHING_UNIT = null
+
 func _ready() -> void:
 	self.loop = false
+	
+	# Detect when other units interact
+	unit_collision_area.connect("area_entered", _area_entered)
+	unit_collision_area.connect("area_exited", _area_exited)
+	Global.UNIT_ATTACK_TIMER.connect("timeout", _global_unit_attack_step)
 
 func _process(delta: float) -> void:
+	
 	if IS_MOVING and PATH_TO_FOLLOW != null:
+		
+		velocity = lerp(velocity, move_speed, 0.01) # Smooth acceleration (helps with collision issues)
+		
 		if self.alignment == ALIGNMENT.ENEMY:
 			# Unit is an enemy
-			self.progress += move_speed * delta
+			self.progress += velocity * delta
 			
 			# If an enemy makes it to its destination...
 			if self.progress_ratio >= 1.0:
 				crash_castle()
+			
 		else:
 			# Unit is an ally
-			self.progress -= move_speed * delta
+			self.progress -= velocity * delta
 			
 			if self.progress_ratio <= 0.0:
-				# TODO: Figure out what to do when an allied unit makes it to end of path
-				print("Yeah we uhhhh crashed the enemy castle yuh")
-				die()
+				die_for_grug()
 
 
 func start_path(path: Path3D):
@@ -42,10 +57,11 @@ func start_path(path: Path3D):
 		PATH_TO_FOLLOW = path
 		path.add_child(self) # Add self to path's children, then start moving
 		
+		velocity = move_speed
 		IS_MOVING = true
 		
 		if self.alignment == ALIGNMENT.ALLY:
-			self.progress = 1.0 # Allies move "backwards" down the path
+			self.progress_ratio = 1.0 # Allies move "backwards" down the path
 
 # Function for doing damage to other unit
 func deal_damage(receiver: Unit):
@@ -53,6 +69,8 @@ func deal_damage(receiver: Unit):
 
 func take_damage(amount: int):
 	health -= amount
+	
+	# TODO: Play a sound?
 	
 	if health <= 0:
 		die()
@@ -70,3 +88,50 @@ func crash_castle():
 	
 	print("Castle Crashed!")
 	die()
+
+func die_for_grug():
+	# TODO: Figure out what to do when an allied unit makes it to end of path
+	print("Yeah we uhhhh crashed the enemy castle yuh")
+	die()
+
+
+func _area_entered(area: Area3D):
+	var unit = area.get_parent()
+	
+	if unit is Unit:
+		# If the colliding enemy is an enemy unit, start fighting!!
+		if unit.alignment != self.alignment:
+			begin_fighting(unit)
+			IS_MOVING = false
+			velocity = 0.0
+			
+		else:
+			if (not unit.IS_MOVING) or unit.IS_FIGHTING:
+				IS_MOVING = false
+				velocity = 0.0
+
+func _area_exited(area: Area3D):
+	var unit = area.get_parent()
+	
+	if unit is Unit:
+		if unit.alignment == self.alignment:
+			IS_MOVING = true
+
+func begin_fighting(clashing_unit: Unit):
+	IS_FIGHTING = true
+	CLASHING_UNIT = clashing_unit
+
+func stop_fighting():
+	IS_FIGHTING = false
+	CLASHING_UNIT = null
+	IS_MOVING = true
+
+func _global_unit_attack_step():
+	if IS_FIGHTING and CLASHING_UNIT != null:
+		var will_kill = ((CLASHING_UNIT.health - self.damage) <= 0)
+		
+		print("Dealing damage!")
+		deal_damage(CLASHING_UNIT)
+		
+		if will_kill:
+			stop_fighting()

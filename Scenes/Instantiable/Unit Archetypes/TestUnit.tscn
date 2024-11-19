@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwub5026qdrn3"]
+[gd_scene load_steps=7 format=3 uid="uid://dwub5026qdrn3"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Unit.gd" id="1_76vbh"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_y4ms7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wxaft"]
+size = Vector3(3, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v8kjh"]
 
@@ -15,6 +18,11 @@ uv1_scale = Vector3(3, 2, 2)
 loop = false
 script = ExtResource("1_76vbh")
 move_speed = 30.0
+
+[node name="UnitCollisionArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnitCollisionArea"]
+shape = SubResource("BoxShape3D_wxaft")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 collision_layer = 4
