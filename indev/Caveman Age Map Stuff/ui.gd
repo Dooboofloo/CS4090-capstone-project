@@ -3,13 +3,14 @@ extends CanvasLayer
 # References
 var towers_placed_script: Node = null
 var path_manager: Node = null
-var message_container: VBoxContainer
+var message_container: RichTextLabel = null
+var messages = []
 
 func _ready():
 	# Get the TowersPlaced node
 	towers_placed_script = get_parent().get_node("TowersPlaced")
 	path_manager = get_parent().get_node("PathManager")
-	message_container = $VBoxContainer
+	message_container = $RichTextLabel
 
 # Update Tower Coin and Grugarians on UI 
 func update_currency_display():
@@ -27,23 +28,25 @@ func _on_send_unit_btn_pressed() -> void:
 func _input(event):
 	if event.is_action_pressed("place_tower"):
 		_on_place_tower_btn_pressed()
-	elif event.is_action_pressed("send_unit"):
+	elif event.is_action_pressed("test_spawn_unit"):
 		_on_send_unit_btn_pressed()
 		
-# Display Messages Screen 
+# Display Messages on Screen 
 func yap(message: String):
-	# Create New Label for the Message 
-	var label = Label.new()
-	label.text = "[%s] %s" % [get_timestamp(), message]
-	# label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	# add message to messages 
+	var formatted_message = "[%s] %s" % [get_timestamp(), message]
+	messages.insert(0, formatted_message)
+	# if more than 6 messages, remove one 
+	if len(messages) > 6:
+		messages.pop_back()
 	
-	message_container.add_child(label)
-	message_container.move_child(label, 0)
-	
-	# remove last message if there are 7 or more 
-	if message_container.get_child_count() >= 7:
-		message_container.get_child(6).queue_free()
-	
+	# update message container
+	message_container.clear()
+	message_container.push_bgcolor("black")
+	message_container.push_color("white")
+	for msg in messages: 
+		message_container.append_text(msg)
+		message_container.newline()
 
 # Refresh UI 
 func _process(delta):
@@ -53,9 +56,6 @@ func _process(delta):
 func get_timestamp():
 	var now = Time.get_time_dict_from_system()
 	var timestamp = "%02d:02d:02d" % [now.hour, now.minute, now.second]
-	print("" + str(now.hour) + ":" + str(now.minute) + ":" + str(now.second))
-	#print("Getting Time")
-	#print("Curretn Time: %02d:02d:02d" % [now.hour, now.minute, now.second]) 
 	return "%02d:%02d:%02d" % [now.hour, now.minute, now.second]
 
 # returns a random warcry 
