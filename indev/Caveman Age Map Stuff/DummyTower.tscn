@@ -29,6 +29,7 @@ shading_mode = 0
 albedo_color = Color(0.298, 1, 0.245, 0.6)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_5srkt"]
+resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_agfrn")
 flip_faces = true
 top_radius = 4.5
@@ -38,6 +39,7 @@ cap_top = false
 cap_bottom = false
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_owd2w"]
+resource_local_to_scene = true
 height = 1.5
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pg0e1"]
