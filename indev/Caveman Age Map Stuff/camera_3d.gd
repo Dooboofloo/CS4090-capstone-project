@@ -1,11 +1,14 @@
 extends Camera3D
 
 @export var acceleration = 25.0
-@export var moveSpeed = 5.0
+@export var moveSpeed = 7.0
 @export var mouseSpeed = 300.0
 
 var velocity = Vector3.ZERO
 var lookAngles = Vector2.ZERO
+var yConstraint = [0.51, 15]
+var xConstraint = [-30,30]
+var zConstraint = [-60,60]
 
 
 
@@ -20,15 +23,17 @@ func _process(delta):
 	#Below here is stuff for the camera moving around.
 	lookAngles.y = clamp(lookAngles.y, PI / -2, PI / 2)
 	set_rotation(Vector3(lookAngles.y, lookAngles.x, 0))
+	
 	var direction = updateDirection()
 	
 	if direction.length_squared() > 0:
 		velocity += direction * acceleration * delta
 	if velocity.length() > moveSpeed:
 		velocity = velocity.normalized() * moveSpeed
-	
+
 	translate(velocity * delta)
 	
+	limitCamera()
 
 func _input(event):
 	if Input.is_action_just_pressed("right_click"):
@@ -60,3 +65,24 @@ func updateDirection():
 		velocity = Vector3.ZERO #No input? No movement.
 		
 	return dir.normalized() #Dividing all nums in vector by largest num to make nums smaller.
+
+
+#Limits camera movement
+func limitCamera():
+	#limiting x position. changing x by a larger position presents jitters
+	while position.x > xConstraint[1]:
+		position.x -= .0001
+	while position.x < xConstraint[0]:
+		position.x += .0001
+	
+	#limiting y position
+	while position.y > yConstraint[1]:
+		position.y -= .0001
+	while position.y < yConstraint[0]:
+		position.y += .0001
+	
+	#limiting z position
+	while position.z > zConstraint[1]:
+		position.z -= .0001
+	while position.z < zConstraint[0]:
+		position.z += .0001
