@@ -11,6 +11,9 @@ enum ALIGNMENT {ENEMY, ALLY}
 @export var damage: int = 1
 @export var health: int = 5
 
+#This exists mainly for base damage calculations.
+var maxHealth: int = 5
+
 @export var cost: int = 7 # Cost for unit to be placed. Only matters for player deployment.
 
 var velocity = 0
@@ -71,6 +74,7 @@ func take_damage(amount: int):
 	health -= amount
 	
 	# TODO: Play a sound?
+	changeHealthBar()
 	
 	if health <= 0:
 		die()
@@ -83,11 +87,14 @@ func crash_castle():
 	# TODO
 	# for now just kill it and print a message
 	
-	#If population is health, remove grugarians based on dmg or a calc of dmg, cost, hp (cost & hp = condition/skill).
-	#If population is not health, same thing but remove basehealth. Currency.pay_grugarians(int)
+	#NOTE: This is the base damage calc. Idea is that the damage is based on unit damage and cost reduced by current health %.
+	var baseDmg = ceil(float(damage) * (float(health)/float(maxHealth)) * float(cost))
 	
-	print("Castle Crashed!")
+	print("Castle Crashed! The Gragarian has killed ", baseDmg, " loyal Grugarians.")
 	die()
+	
+	#The unit will not handle checking for gameover state. Probably the map will.
+	Currency.pay_grugarians(baseDmg)
 
 func die_for_grug():
 	# TODO: Figure out what to do when an allied unit makes it to end of path
@@ -134,3 +141,15 @@ func _global_unit_attack_step():
 		
 		if will_kill:
 			stop_fighting()
+
+#Change health bar graphic based on current health state.
+#We can make this an actual health bar or use colors on the unit itself.
+func changeHealthBar():
+	var percentHealth: float = float(health) / float(maxHealth)
+	
+	if percentHealth <= 2.5/4.0 and percentHealth > 1.0/4.0:
+		var texture = load('res://Textures/healthbarHurt.png')
+		$HealthBar.texture = texture
+	elif percentHealth <= 1.0/4.0:
+		var texture = load('res://Textures/healthbarSevere.png')
+		$HealthBar.texture = texture

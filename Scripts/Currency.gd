@@ -12,13 +12,17 @@ var towerCoinGen = [["Base", 1]] #Additions should be arrays with 2 values.
 var grugarianGen = [["Base", 2]] #Additions should be arrays with 2 values.
 
 #Time isn't really a currency but its needed for base currency calculations.
-var startTime = 0
-var genInterval = 1000 #In milliseconds. The interval that must pass for currency gen to occur.
+var startTimeTC = 0
+var startTimeGrug = 0
+var genIntervalTC = 2000 #In milliseconds. The interval that must pass for currency gen to occur.
+var genIntervalGrug = 4500 #In milliseconds. The interval that must pass for grugarian gen to occur
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Grabbing a time to start with for currency calculation. Idk a better spot.
-	startTime = Time.get_ticks_msec()
+	startTimeTC = Time.get_ticks_msec()
+	startTimeGrug = Time.get_ticks_msec()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,14 +31,21 @@ func _process(_delta):
 	#This check will change when more maps are in. Prob use an array with all map scene map node names.
 	if get_tree().current_scene.name == "Caveman Map":
 		var currentTime = Time.get_ticks_msec()
-		#Checking to see if one second has passed.
-		if (currentTime - startTime) >= genInterval:
-			#Calling on functions that require a second to pass to calculate.
+		
+		#Checking to see if defined intervals have passed.
+		if (currentTime - startTimeTC) >= genIntervalTC:
+			#Calling on function to calc towercoin gen
 			currency_calc_tower()
+			
+			#Changing startTime variable to check for second change again.
+			startTimeTC = currentTime
+		
+		if (currentTime - startTimeGrug) >= genIntervalGrug:
+			#Calling on functions to calc grugarian gen
 			currency_calc_unit()
 			
 			#Changing startTime variable to check for second change again.
-			startTime = currentTime
+			startTimeGrug = currentTime
 	
 	#TODO: Make it so that if the scene changes outside of maps that all vars reset to default. Game reset.
 
@@ -91,13 +102,17 @@ func currency_calc_unit(modification: Array = []):
 func pay_towerCoin(cost: int):
 	towerCoin -= cost
 
+
 #Function for any REMOVAL of grugarians from player.
 func pay_grugarians(cost: int):
 	grugarians -= cost
+	
+
 
 #Function for any one off ADDING of towerCoin to player account.
 func receive_towerCoin(bonus: int):
 	towerCoin += bonus
+
 
 #Function for any one off ADDING of grugarians to player account.
 func receive_grugarians(bonus: int):
