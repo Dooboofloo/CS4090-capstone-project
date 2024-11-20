@@ -1,6 +1,6 @@
 # ALL TOWERS MUST HAVE DetectUnitArea ON LAYER 2 FOR COLLISION. This stops tower placement from being affected by it.
-# CRITICAL TODO: tower upgrades currently upgrade ALL TOWERS AT ONCE! Must make unit placements UNIQUE
-# ALSO, preview tower un-upgrades (related issue)
+# All variables labeled export can be changed using inspector in duplicates made.
+# Values associated with @export vars are defaults. Look in inspector for real values.
 
 class_name Tower
 extends Node3D
@@ -22,14 +22,14 @@ var ENEMIES_IN_RANGE = [] # A list of enemies that are currently in range
 var is_preview = false #Variable for us to check if the unit is placed yet or just a preview.
 var placeable = false #Variable for us to know if the tower can be placed or not.
 
-#This contains the tower's upgrade path. We can in the future add two option but for now its just one.
+#This contains the tower's upgrade path. We can in the future add two option but@ for now its just one.
 #Holds a tuple of stat change type and amount. EX: [[["Attack", "Range"], [5, .3]], ...]
 #This can be changed later to accept your choice of operation, currently it will only be addition though.
 #For performance, the FIRST upgrade is the one at the END. LAST is the one at FRONT.
-var upgrades = [[["Damage", "Range"], [4, .3]], [["Attack Speed", "Range"], [2, .3]]]
+@export var upgrades = [[["Damage", "Range"], [4, .3]], [["Attack Speed", "Range"], [2, .3]]]
 
 #This tracks cost of each upgrade. Meant to relate one to one in index. Can be made to do cost in both TC and grugs.
-var upgrade_cost = [10, 5]
+@export var upgrade_cost = [10, 5]
 
 #This tracks if the user mouse is still on the tower allowing updating of upgrade indicator
 var mouse_hover = false

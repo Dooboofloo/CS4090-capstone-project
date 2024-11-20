@@ -18,6 +18,7 @@ uv1_scale = Vector3(3, 2, 2)
 [node name="TestUnit" type="PathFollow3D"]
 loop = false
 script = ExtResource("1_76vbh")
+unit_name = " Dummy Unit"
 move_speed = 30.0
 
 [node name="UnitCollisionArea" type="Area3D" parent="."]

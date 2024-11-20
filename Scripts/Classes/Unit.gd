@@ -12,7 +12,7 @@ enum ALIGNMENT {ENEMY, ALLY}
 @export var health: int = 5
 
 #This exists mainly for base damage calculations.
-var maxHealth: int = 5
+@export var maxHealth: int = 5
 
 @export var cost: int = 7 # Cost for unit to be placed. Only matters for player deployment.
 
