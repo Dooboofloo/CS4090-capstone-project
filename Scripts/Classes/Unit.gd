@@ -114,8 +114,7 @@ func _area_exited(area: Area3D):
 	var unit = area.get_parent()
 	
 	if unit is Unit:
-		if unit.alignment == self.alignment:
-			IS_MOVING = true
+		IS_MOVING = true
 
 func begin_fighting(clashing_unit: Unit):
 	IS_FIGHTING = true
