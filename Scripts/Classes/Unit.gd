@@ -24,6 +24,10 @@ var PATH_TO_FOLLOW = null
 var IS_FIGHTING = false
 var CLASHING_UNIT = null
 
+#Model stuff
+var hurtHealth = preload("res://Textures/healthbarHurt.png")
+var severeHealth = preload("res://Textures/healthbarSevere.png")
+
 func _ready() -> void:
 	self.loop = false
 	
@@ -148,8 +152,8 @@ func changeHealthBar():
 	var percentHealth: float = float(health) / float(maxHealth)
 	
 	if percentHealth <= 2.5/4.0 and percentHealth > 1.0/4.0:
-		var texture = load('res://Textures/healthbarHurt.png')
+		var texture = hurtHealth
 		$HealthBar.texture = texture
 	elif percentHealth <= 1.0/4.0:
-		var texture = load('res://Textures/healthbarSevere.png')
+		var texture = severeHealth
 		$HealthBar.texture = texture

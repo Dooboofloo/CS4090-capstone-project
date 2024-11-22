@@ -14,7 +14,8 @@ func _process(_delta):
 
 
 #Boots up preview of selected tower.
-func preview_placement(_model_path):
+#NOTE: Now takes a preloaded model for the tower to start preview of.
+func preview_placement(towerModel):
 	#Using 3D position function to get our raycast query.
 	var result = get_3D_position()
 	
@@ -22,10 +23,8 @@ func preview_placement(_model_path):
 	if result.size() != 0:
 	
 		if current_preview.is_empty():
-			#Preloading scene with our model
-			var model = preload("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
 			#Duplicating the object
-			var newTower = model.instantiate()
+			var newTower = towerModel.instantiate()
 			#Setting locationwhere it should appear
 			newTower.position = result.get('position')
 			#Adding the tower to the scene.
@@ -41,10 +40,8 @@ func preview_placement(_model_path):
 	#Handling clicking of button when no raycast is possible as its based on cursor.
 	else:
 		if current_preview.is_empty():
-			#Preloading scene with our model
-			var model = preload("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
 			#Duplicating the object
-			var newTower = model.instantiate()
+			var newTower = towerModel.instantiate()
 			#Setting location where it should appear if button is not in playable area
 			var safePosition = %Camera3D.position
 			safePosition[1] =  0 

@@ -6,6 +6,10 @@ var path_manager: Node = null
 var message_container: RichTextLabel = null
 var messages = []
 
+#Tower Models Preload
+var dummyTower = preload("res://Scenes/Instantiable/Tower Archetypes/DummyTower.tscn")
+
+
 func _ready():
 	# Get the TowersPlaced node
 	towers_placed_script = get_parent().get_node("TowersPlaced")
@@ -18,7 +22,7 @@ func update_currency_display():
 
 func _on_place_tower_btn_pressed() -> void:
 	# Call preview_placement in TowersPlaced script
-	towers_placed_script.preview_placement("res://indev/Caveman Age Map Stuff/DummyTower.tscn")
+	towers_placed_script.preview_placement(dummyTower)
 
 func _on_send_unit_btn_pressed() -> void:
 	path_manager.spawn_unit()

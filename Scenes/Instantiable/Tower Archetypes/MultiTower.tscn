@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://cpy1774qytj42"]
+[gd_scene load_steps=15 format=3 uid="uid://c0cfdjpbjws7q"]
 
-[ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_4w3op"]
-[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="1_xlshq"]
+[ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_7mi4n"]
+[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_qonk1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywy31"]
-albedo_texture = ExtResource("1_xlshq")
+albedo_texture = ExtResource("2_qonk1")
 uv1_scale = Vector3(5, 5, 5)
 
 [sub_resource type="SphereMesh" id="SphereMesh_c7mn4"]
@@ -59,26 +59,26 @@ radius = 0.1
 height = 0.2
 
 [node name="DummyTower" type="Node3D"]
-script = ExtResource("1_4w3op")
+script = ExtResource("1_7mi4n")
 tower_name = "Dummy Tower"
 
-[node name="Perish" type="StaticBody3D" parent="."]
+[node name="Model" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0)
 collision_layer = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Perish"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model"]
 shape = SubResource("SphereShape3D_etvmx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Perish/CollisionShape3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Model/CollisionShape3D"]
 mesh = SubResource("SphereMesh_c7mn4")
 
-[node name="PlacementDenial" type="Area3D" parent="Perish"]
+[node name="PlacementDenial" type="Area3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Perish/PlacementDenial"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/PlacementDenial"]
 shape = SubResource("BoxShape3D_03ka2")
 
-[node name="AreaPlaceableIndicator" type="MeshInstance3D" parent="Perish/PlacementDenial/CollisionShape3D"]
+[node name="AreaPlaceableIndicator" type="MeshInstance3D" parent="Model/PlacementDenial/CollisionShape3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.443072, 0)
 visible = false
 mesh = SubResource("BoxMesh_icd1f")
@@ -104,6 +104,6 @@ visible = false
 mesh = SubResource("SphereMesh_ti18x")
 skeleton = NodePath("")
 
-[connection signal="input_event" from="Perish" to="." method="_on_perish_input_event"]
-[connection signal="mouse_entered" from="Perish" to="." method="_on_perish_mouse_entered"]
-[connection signal="mouse_exited" from="Perish" to="." method="_on_perish_mouse_exited"]
+[connection signal="input_event" from="Model" to="." method="_on_model_input_event"]
+[connection signal="mouse_entered" from="Model" to="." method="_on_model_mouse_entered"]
+[connection signal="mouse_exited" from="Model" to="." method="_on_model_mouse_exited"]

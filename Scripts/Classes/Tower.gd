@@ -119,15 +119,15 @@ func preview_follow():
 		#Setting color to represent if placeable or not.
 		if validArea and (Currency.towerCoin >= towerCost): #Can place and buy
 			var colorCanPlace = Color8(99, 255, 102, 106)
-			$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorCanPlace
+			$Model/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorCanPlace
 			placeable = true
 		else: #Non placeable states.
 			if validArea: #Can place can't buy
 				var colorNoCoin = Color8(255, 200, 52, 106)
-				$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoCoin
+				$Model/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoCoin
 			else: #Can't place
 				var colorNoPlace = Color8(255, 73, 68, 106)
-				$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoPlace
+				$Model/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.mesh.material.albedo_color = colorNoPlace
 			placeable = false
 
 func preview_follow_end():
@@ -135,14 +135,14 @@ func preview_follow_end():
 
 
 func remove_collision():
-	$Perish/PlacementDenial.set_collision_layer_value(1, false)
-	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
+	$Model/PlacementDenial.set_collision_layer_value(1, false)
+	$Model/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = true
 	
 	$DetectUnitArea.monitoring = false
 
 func add_collision():
-	$Perish/PlacementDenial.set_collision_layer_value(1, true)
-	$Perish/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false
+	$Model/PlacementDenial.set_collision_layer_value(1, true)
+	$Model/PlacementDenial/CollisionShape3D/AreaPlaceableIndicator.visible = false
 	
 	$DetectUnitArea.monitoring = true
 
@@ -187,7 +187,7 @@ func upgrade_tower():
 #Below is all the stuff for detecting mouse actions to control upgrade indicator and upgrade attempt.
 
 #Double clicking tower should attempt upgrade if not preview. Based on if they click the tower.
-func _on_perish_input_event(_camera, event, _event_position, _normal, _shape_idx):
+func _on_model_input_event(_camera, event, _event_position, _normal, _shape_idx):
 	if event is InputEventMouseButton and is_preview == false:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click == true:
 			var upgradeCostSize = len(upgrade_cost)
@@ -205,14 +205,14 @@ func _on_perish_input_event(_camera, event, _event_position, _normal, _shape_idx
 
 
 #Seeing if user is hovering the tower and its not preview. If so, indicates upgrade status indicator.
-func _on_perish_mouse_entered():
+func _on_model_mouse_entered():
 	if is_preview == false:
 		$"Upgrade Indicator".show()
 		
 		mouse_hover = true
 
 #Seeing if user left hovering the tower and its not preview. If so, removes upgrade status indicator.
-func _on_perish_mouse_exited():
+func _on_model_mouse_exited():
 	if is_preview == false:
 		$"Upgrade Indicator".hide()
 		
