@@ -8,6 +8,11 @@ var messages = []
 
 #Tower Models Preload
 var dummyTower = preload("res://Scenes/Instantiable/Tower Archetypes/DummyTower.tscn")
+var basicTower = preload("res://Scenes/Instantiable/Tower Archetypes/BasicTower.tscn")
+var multiTower = preload("res://Scenes/Instantiable/Tower Archetypes/MultiTower.tscn")
+var econTCTower = preload("res://Scenes/Instantiable/Tower Archetypes/EconTCTower.tscn")
+var rapidTower = preload("res://Scenes/Instantiable/Tower Archetypes/RapidTower.tscn")
+var sniperTower = preload("res://Scenes/Instantiable/Tower Archetypes/SniperTower.tscn")
 
 
 func _ready():
@@ -22,7 +27,7 @@ func update_currency_display():
 
 func _on_place_tower_btn_pressed() -> void:
 	# Call preview_placement in TowersPlaced script
-	towers_placed_script.preview_placement(dummyTower)
+	towers_placed_script.preview_placement(sniperTower)
 
 func _on_send_unit_btn_pressed() -> void:
 	path_manager.spawn_unit()

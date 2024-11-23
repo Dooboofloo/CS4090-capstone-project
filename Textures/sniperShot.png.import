@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2dsq60nxyr3"
-path.s3tc="res://.godot/imported/healthbarSevere.png-c085412c716f7ed52aefac8f48106d30.s3tc.ctex"
+uid="uid://dxqsu3mivofum"
+path.s3tc="res://.godot/imported/sniperShot.png-3ca8b7bab96f8501235b9c11ed35ec44.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/healthbarSevere.png"
-dest_files=["res://.godot/imported/healthbarSevere.png-c085412c716f7ed52aefac8f48106d30.s3tc.ctex"]
+source_file="res://Textures/sniperShot.png"
+dest_files=["res://.godot/imported/sniperShot.png-3ca8b7bab96f8501235b9c11ed35ec44.s3tc.ctex"]
 
 [params]
 

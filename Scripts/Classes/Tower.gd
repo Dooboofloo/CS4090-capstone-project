@@ -9,6 +9,7 @@ extends Node3D
 @export var damage: int = 1
 @export var atk_speed: float = 2.0 # ex. atk speed 2 = 2 shots/second = 0.5 cooldown
 @export var atk_range: float = 5.0
+@export var genNum: int = 0 #Variable for towers which generate currency.
 
 @onready var cooldown = 1 / atk_speed
 
@@ -31,6 +32,9 @@ var placeable = false #Variable for us to know if the tower can be placed or not
 #This tracks cost of each upgrade. Meant to relate one to one in index. Can be made to do cost in both TC and grugs.
 @export var upgrade_cost = [10, 5]
 
+#This tracks upgrade stage. Arrays are shared between instances of same object so can't pop arrays.
+@export var upgrade_stage = 4
+
 #This tracks if the user mouse is still on the tower allowing updating of upgrade indicator
 var mouse_hover = false
 
@@ -50,15 +54,10 @@ func _ready() -> void:
 	unit_detection_area.connect("body_entered", _on_detect_unit_area_body_entered)
 	unit_detection_area.connect("body_exited", _on_detect_unit_area_body_exited)
 
+
 func _process(_delta: float) -> void:
 	
-	if cooldown_timer.is_stopped() and len(ENEMIES_IN_RANGE) > 0:
-		print("Pew!")
-		
-		ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position) )
-		var closest_unit = ENEMIES_IN_RANGE[0]
-		deal_damage(closest_unit)
-	
+	#NOTE: We must check this first as preview_follow_end() resets the timer so towers can't activate on place.
 	#Checking if we are in preview mode.
 	if is_preview == true:
 		preview_follow()
@@ -66,6 +65,40 @@ func _process(_delta: float) -> void:
 	elif (is_preview == false) and (only_once == 1):
 		preview_follow_end() 
 		only_once -= 1
+	
+	
+	#This is now nested as without it, spawning the preview of an econ tower causes money gain.
+	if is_preview == false:
+		if cooldown_timer.is_stopped() and len(ENEMIES_IN_RANGE) > 0:
+			
+			if tower_name not in ["MultiTower", "EconTCTower"]:
+				print("Pew!")
+				
+				ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position) )
+				var closest_unit = ENEMIES_IN_RANGE[0]
+				deal_damage(closest_unit)
+			else:
+				if tower_name == "MultiTower":
+					print("Kablam!")
+					
+					ENEMIES_IN_RANGE.sort_custom( func(a, b): return global_position.distance_squared_to(a.global_position) < global_position.distance_squared_to(b.global_position) )
+					var multiShotLimit = 3
+					var shotTracker = 0
+					#This is supposed to each time it can attack attack at max 3 enemies at once.
+					for i in range(len(ENEMIES_IN_RANGE)):
+						if shotTracker >= multiShotLimit:
+							break
+						
+						var closest_unit = ENEMIES_IN_RANGE[i]
+						deal_damage(closest_unit)
+						shotTracker += 1
+		#This is handling any economics type towers.
+		elif cooldown_timer.is_stopped() and (tower_name in ["EconTCTower", "EconGrugTower"]):
+			if tower_name == "EconTCTower":
+				Currency.receive_towerCoin(genNum)
+			
+			cooldown_timer.start()
+	
 	
 	#Checking if we need to update upgrade indicator.
 	if mouse_hover == true:
@@ -132,7 +165,9 @@ func preview_follow():
 
 func preview_follow_end():
 	add_collision()
-
+	
+	#Making it so your tower can't attack immediately upon place.
+	cooldown_timer.start()
 
 func remove_collision():
 	$Model/PlacementDenial.set_collision_layer_value(1, false)
@@ -155,12 +190,12 @@ func update_cooldown():
 
 
 #Handles processing of tower upgrade. We assume cost req is checked prior to call.
-#This will only pop upgrades list. We assume cost array was popped to give the pay function its int.
+#This will only check upgrades list. We assume cost array was checked to give the pay function its int.
 func upgrade_tower():
 	if len(upgrades) != 0:
 		print("Upgrading tower...")
 		#grabbing current upgrade and unpacking it.
-		var upgrade = upgrades.pop_back()
+		var upgrade = upgrades[upgrade_stage]
 		var stats = upgrade[0]
 		var changes = upgrade[1]
 		
@@ -175,6 +210,8 @@ func upgrade_tower():
 				elif stats[i] == "Attack Speed":
 					atk_speed += changes[i]
 					update_cooldown()
+				elif stats[i] == "Generation":
+					genNum += changes[i]
 				else:
 					print("ERROR! Unknown stat, skipping.")
 		else:
@@ -190,13 +227,13 @@ func upgrade_tower():
 func _on_model_input_event(_camera, event, _event_position, _normal, _shape_idx):
 	if event is InputEventMouseButton and is_preview == false:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.double_click == true:
-			var upgradeCostSize = len(upgrade_cost)
 			
-			if upgradeCostSize != 0:
-				if Currency.towerCoin >= upgrade_cost[upgradeCostSize-1]:
+			if upgrade_stage != -1:
+				if Currency.towerCoin >= upgrade_cost[upgrade_stage]:
 					
-					Currency.pay_towerCoin(upgrade_cost.pop_back())
+					Currency.pay_towerCoin(upgrade_cost[upgrade_stage])
 					upgrade_tower()
+					upgrade_stage -= 1
 					
 				else:
 					print("ERROR! Not enough tC! Sorry, no loans.")
@@ -220,14 +257,13 @@ func _on_model_mouse_exited():
 
 #Sees current status of currency and updates upgrade status indicator based on it.
 func update_upgrade_indicator():
-	var upgradeCostSize = len(upgrade_cost)
 	var upgradeIndicator = $"Upgrade Indicator"
 	
-	if upgradeCostSize == 0: #There are no upgrades remaining
+	if upgrade_stage == -1: #There are no upgrades remaining
 		var goldColor = Color8(255, 255, 0, 255)
 		upgradeIndicator.mesh.material.albedo_color = goldColor
 		upgradeIndicator.mesh.material.emission = goldColor
-	elif upgrade_cost[upgradeCostSize-1] <= Currency.towerCoin: #They have the money
+	elif upgrade_cost[upgrade_stage] <= Currency.towerCoin: #They have the money
 		var greenColor = Color8(16, 255, 5, 255)
 		upgradeIndicator.mesh.material.albedo_color = greenColor
 		upgradeIndicator.mesh.material.emission = greenColor

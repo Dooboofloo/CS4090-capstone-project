@@ -1,0 +1,34 @@
+EconTC Tower Upgrade Path
+-Please change if upgrade path is changed to make it easy to know.
+
+Total Cost = 122
+
+Base:
+Generation = 2
+AtkSpeed = 0.2
+Cost = 5
+
+Up1:
+Generation = 2
+AtkSpeed = .025
+Cost = 5
+
+Up2:
+Generation = 3
+AtkSpeed = .025
+Cost = 9
+
+Up3:
+Generation = 4
+AtkSpeed = .03
+Cost = 16
+
+Up4:
+Generation = 6
+AtkSpeed = .035
+Cost = 31
+
+Up5:
+Generation = 10
+AtkSpeed = .05
+Cost = 56

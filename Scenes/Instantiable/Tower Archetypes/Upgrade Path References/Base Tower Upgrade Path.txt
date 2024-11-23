@@ -1,0 +1,40 @@
+Base Tower Upgrade Path
+-Please change if upgrade path is changed to make it easy to know.
+
+Total Cost = 69
+
+Base:
+Dmg = 3
+AtkSpeed = 1.5
+Range = 6
+Cost = 3
+
+Up1:
+Dmg = 3
+AtkSpeed = 1.5
+Range = 8
+Cost = 7
+
+Up2:
+Dmg = 3
+AtkSpeed = 2.5
+Range = 8
+Cost = 10
+
+Up3:
+Dmg = 5
+AtkSpeed = 2.5
+Range = 10
+Cost = 15
+
+Up4:
+Dmg = 5
+AtkSpeed = 2.5
+Range = 15
+Cost = 27
+
+Up5:
+Dmg = 8
+AtkSpeed = 2.5
+Range = 18
+Cost = 45

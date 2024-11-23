@@ -1,0 +1,40 @@
+Rapid Tower Upgrade Path
+-Please change if upgrade path is changed to make it easy to know.
+
+Total Cost = 128
+
+Base:
+Dmg = 2
+AtkSpeed = 2
+Range = 3
+Cost = 5
+
+Up1:
+Dmg = 2
+AtkSpeed = 3
+Range = 3
+Cost = 6
+
+Up2:
+Dmg = 2
+AtkSpeed = 3
+Range = 4
+Cost = 10
+
+Up3:
+Dmg = 4
+AtkSpeed = 3
+Range = 5
+Cost = 25
+
+Up4:
+Dmg = 4
+AtkSpeed = 3.5
+Range = 7
+Cost = 30
+
+Up5:
+Dmg = 5
+AtkSpeed = 5
+Range = 7
+Cost = 52

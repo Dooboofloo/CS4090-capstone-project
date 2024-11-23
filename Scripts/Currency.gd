@@ -2,7 +2,7 @@ extends Node
 
 #Variables for all "currencies". Like health, score, etc.
 #TODO: Show current state of these currencies in UI.
-var towerCoin = 0 #Curerncy for towers
+var towerCoin = 0 #Currency for towers
 var grugarians = 100 #Currency for units. Assuming this is also base health.
 #var friendlyBase = 100 #This is just here in case we wish to decouple pop/unit currency from health.
 

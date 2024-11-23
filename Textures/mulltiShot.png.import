@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2dsq60nxyr3"
-path.s3tc="res://.godot/imported/healthbarSevere.png-c085412c716f7ed52aefac8f48106d30.s3tc.ctex"
+uid="uid://sgwup50wrm4r"
+path.s3tc="res://.godot/imported/mulltiShot.png-6e274723698fe9f91d816e66c8c61b27.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/healthbarSevere.png"
-dest_files=["res://.godot/imported/healthbarSevere.png-c085412c716f7ed52aefac8f48106d30.s3tc.ctex"]
+source_file="res://Textures/mulltiShot.png"
+dest_files=["res://.godot/imported/mulltiShot.png-6e274723698fe9f91d816e66c8c61b27.s3tc.ctex"]
 
 [params]
 

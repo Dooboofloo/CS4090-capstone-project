@@ -1,0 +1,40 @@
+Sniper Tower Upgrade Path
+-Please change if upgrade path is changed to make it easy to know.
+
+Total Cost = 120
+
+Base:
+Dmg = 10
+AtkSpeed = 0.5
+Range = 10
+Cost = 6
+
+Up1:
+Dmg = 10
+AtkSpeed = 0.5
+Range = 13
+Cost = 4
+
+Up2:
+Dmg = 15
+AtkSpeed = 0.5
+Range = 13
+Cost = 10
+
+Up3:
+Dmg = 23
+AtkSpeed = 0.5
+Range = 16
+Cost = 15
+
+Up4:
+Dmg = 35
+AtkSpeed = 0.5
+Range = 19
+Cost = 30
+
+Up5:
+Dmg = 35
+AtkSpeed = 0.75
+Range = 23
+Cost = 55

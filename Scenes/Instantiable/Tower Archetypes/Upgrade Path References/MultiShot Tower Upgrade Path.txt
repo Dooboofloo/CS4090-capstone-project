@@ -1,0 +1,40 @@
+MultiShot Tower Upgrade Path
+-Please change if upgrade path is changed to make it easy to know.
+
+Total Cost = 117
+
+Base:
+Dmg = 2
+AtkSpeed = 0.5
+Range = 7
+Cost = 5
+
+Up1:
+Dmg = 2
+AtkSpeed = 0.5
+Range = 9
+Cost = 4
+
+Up2:
+Dmg = 2
+AtkSpeed = 0.5
+Range = 12
+Cost = 10
+
+Up3:
+Dmg = 4
+AtkSpeed = 0.5
+Range = 14
+Cost = 16
+
+Up4:
+Dmg = 5
+AtkSpeed = 1
+Range = 15
+Cost = 32
+
+Up5:
+Dmg = 9
+AtkSpeed = 1.5
+Range = 15
+Cost = 50

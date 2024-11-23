@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ciyviljw4hpo4"]
+[gd_scene load_steps=16 format=3 uid="uid://ciyviljw4hpo4"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_bus3v"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_0qfrl"]
+[ext_resource type="Texture2D" uid="uid://c3yo6tk1brpgq" path="res://Textures/normalShot.png" id="3_3trjg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
 
@@ -58,9 +59,15 @@ material = SubResource("StandardMaterial3D_jdrx5")
 radius = 0.1
 height = 0.2
 
-[node name="DummyTower" type="Node3D"]
+[node name="BasicTower" type="Node3D"]
 script = ExtResource("1_bus3v")
-tower_name = "Dummy Tower"
+tower_name = "Basic Tower"
+damage = 3
+atk_speed = 1.5
+atk_range = 6.0
+towerCost = 3
+upgrades = [[["Damage", "Range"], [3, 3]], [["Range"], [5]], [["Damage", "Range"], [2, 2]], [["Attack Speed"], [1.0]], [["Range"], [2]]]
+upgrade_cost = [45, 27, 15, 10, 7]
 
 [node name="Model" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0)
@@ -103,6 +110,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75998, 0)
 visible = false
 mesh = SubResource("SphereMesh_ti18x")
 skeleton = NodePath("")
+
+[node name="Tower Type Indicator" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.33631, 0)
+billboard = 1
+texture = ExtResource("3_3trjg")
 
 [connection signal="input_event" from="Model" to="." method="_on_model_input_event"]
 [connection signal="mouse_entered" from="Model" to="." method="_on_model_mouse_entered"]
