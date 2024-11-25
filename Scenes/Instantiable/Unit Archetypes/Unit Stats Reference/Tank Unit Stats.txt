@@ -1,0 +1,8 @@
+Tank Unit Stats
+
+Move Speed: 20
+Damage: 1
+Health: 14
+Max Health: 14
+Cost: 10
+Enemy Base Multiplier: 2.5

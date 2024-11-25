@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3yo6tk1brpgq"
-path.s3tc="res://.godot/imported/normalShot.png-6fb0a8a569fe9a7984fc971c33048737.s3tc.ctex"
+uid="uid://tgphij4k05wu"
+path.s3tc="res://.godot/imported/Fast Unit Indicator.png-27bad9e36ab75b194f300935e40da8d5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/normalShot.png"
-dest_files=["res://.godot/imported/normalShot.png-6fb0a8a569fe9a7984fc971c33048737.s3tc.ctex"]
+source_file="res://Textures/Unit Textures/Fast Unit Indicator.png"
+dest_files=["res://.godot/imported/Fast Unit Indicator.png-27bad9e36ab75b194f300935e40da8d5.s3tc.ctex"]
 
 [params]
 

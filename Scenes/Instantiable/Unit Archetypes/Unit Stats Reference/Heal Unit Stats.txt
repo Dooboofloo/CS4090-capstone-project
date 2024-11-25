@@ -1,0 +1,8 @@
+Heal Unit Stats
+
+Move Speed: 30
+Damage: 5
+Health: 6
+Max Health: 6
+Cost: 10
+Enemy Base Multiplier: 1.5

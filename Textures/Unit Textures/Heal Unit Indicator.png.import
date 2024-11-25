@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxqsu3mivofum"
-path.s3tc="res://.godot/imported/sniperShot.png-3ca8b7bab96f8501235b9c11ed35ec44.s3tc.ctex"
+uid="uid://bhojqvpacoqqo"
+path.s3tc="res://.godot/imported/Heal Unit Indicator.png-c0992f68f20140f29daee26f3be9e4d5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/sniperShot.png"
-dest_files=["res://.godot/imported/sniperShot.png-3ca8b7bab96f8501235b9c11ed35ec44.s3tc.ctex"]
+source_file="res://Textures/Unit Textures/Heal Unit Indicator.png"
+dest_files=["res://.godot/imported/Heal Unit Indicator.png-c0992f68f20140f29daee26f3be9e4d5.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,8 @@
+Normal Unit Stats
+
+Move Speed: 30
+Damage: 2
+Health: 7
+Max Health: 7
+Cost: 5
+Enemy Base Multiplier: 2

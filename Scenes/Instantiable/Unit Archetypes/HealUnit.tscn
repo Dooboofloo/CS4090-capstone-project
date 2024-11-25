@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1nscyyk0l43a"]
+[gd_scene load_steps=11 format=3 uid="uid://d1nscyyk0l43a"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Unit.gd" id="1_ckfr3"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_oo42w"]
 [ext_resource type="Texture2D" uid="uid://ce6keatsi5pic" path="res://Textures/healthbarHealthy.png" id="3_53pb0"]
+[ext_resource type="Texture2D" uid="uid://bhojqvpacoqqo" path="res://Textures/Unit Textures/Heal Unit Indicator.png" id="4_ruf0b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wxaft"]
 size = Vector3(3, 3, 3)
@@ -15,11 +16,22 @@ size = Vector3(3, 3, 3)
 albedo_texture = ExtResource("2_oo42w")
 uv1_scale = Vector3(3, 2, 2)
 
-[node name="TestUnit" type="PathFollow3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yu85f"]
+size = Vector3(1, 1, 3.11766)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3g36"]
+size = Vector3(1, 1, 2.59814)
+
+[node name="HealUnit" type="PathFollow3D"]
 loop = false
 script = ExtResource("1_ckfr3")
-unit_name = " Dummy Unit"
+unit_name = "HealUnit"
 move_speed = 30.0
+damage = 5
+health = 6
+maxHealth = 6
+cost = 10
+enemyMult = 1.5
 
 [node name="UnitCollisionArea" type="Area3D" parent="."]
 collision_layer = 2
@@ -43,3 +55,34 @@ transform = Transform3D(0.330308, 0, 0, 0, 0.330308, 0, 0, 0, 0.330308, 0, 0.936
 flip_v = true
 billboard = 1
 texture = ExtResource("3_53pb0")
+
+[node name="Unit Type Indicator" type="Sprite3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 1.29862, 0)
+billboard = 1
+render_priority = 1
+texture = ExtResource("4_ruf0b")
+
+[node name="Ranged Area" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Ranged Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.204772)
+shape = SubResource("BoxShape3D_yu85f")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Ranged Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.0893)
+shape = SubResource("BoxShape3D_r3g36")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Ranged Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.70358)
+shape = SubResource("BoxShape3D_r3g36")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="Ranged Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.33227)
+shape = SubResource("BoxShape3D_r3g36")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="Ranged Area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.9786)
+shape = SubResource("BoxShape3D_r3g36")

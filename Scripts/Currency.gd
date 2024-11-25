@@ -15,7 +15,7 @@ var grugarianGen = [["Base", 2]] #Additions should be arrays with 2 values.
 var startTimeTC = 0
 var startTimeGrug = 0
 var genIntervalTC = 2000 #In milliseconds. The interval that must pass for currency gen to occur.
-var genIntervalGrug = 4500 #In milliseconds. The interval that must pass for grugarian gen to occur
+var genIntervalGrug = 4000 #In milliseconds. The interval that must pass for grugarian gen to occur
 
 
 # Called when the node enters the scene tree for the first time.

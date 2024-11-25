@@ -1,0 +1,8 @@
+Fast Unit Stats
+
+Move Speed: 40
+Damage: 1
+Health: 7
+Max Health: 7
+Cost: 7
+Enemy Base Multiplier: 1.75

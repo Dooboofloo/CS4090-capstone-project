@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmhuhtgr52l43"
-path.s3tc="res://.godot/imported/econTC.png-ea30382586ce31efea403dd2a60529a4.s3tc.ctex"
+uid="uid://dxqsu3mivofum"
+path.s3tc="res://.godot/imported/sniperShot.png-dc6501a905b2a90abf4ba1281f1881bf.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/econTC.png"
-dest_files=["res://.godot/imported/econTC.png-ea30382586ce31efea403dd2a60529a4.s3tc.ctex"]
+source_file="res://Textures/Tower Textures/sniperShot.png"
+dest_files=["res://.godot/imported/sniperShot.png-dc6501a905b2a90abf4ba1281f1881bf.s3tc.ctex"]
 
 [params]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1x6636u6abcj"]
+[gd_scene load_steps=9 format=3 uid="uid://c1x6636u6abcj"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Unit.gd" id="1_xg22a"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_wa5uc"]
 [ext_resource type="Texture2D" uid="uid://ce6keatsi5pic" path="res://Textures/healthbarHealthy.png" id="3_ue783"]
+[ext_resource type="Texture2D" uid="uid://tgphij4k05wu" path="res://Textures/Unit Textures/Fast Unit Indicator.png" id="4_ofdmm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wxaft"]
 size = Vector3(3, 3, 3)
@@ -15,11 +16,14 @@ size = Vector3(3, 3, 3)
 albedo_texture = ExtResource("2_wa5uc")
 uv1_scale = Vector3(3, 2, 2)
 
-[node name="TestUnit" type="PathFollow3D"]
+[node name="FastUnit" type="PathFollow3D"]
 loop = false
 script = ExtResource("1_xg22a")
-unit_name = " Dummy Unit"
-move_speed = 30.0
+unit_name = " FastUnit"
+move_speed = 40.0
+health = 7
+maxHealth = 7
+enemyMult = 1.75
 
 [node name="UnitCollisionArea" type="Area3D" parent="."]
 collision_layer = 2
@@ -43,3 +47,9 @@ transform = Transform3D(0.330308, 0, 0, 0, 0.330308, 0, 0, 0, 0.330308, 0, 0.936
 flip_v = true
 billboard = 1
 texture = ExtResource("3_ue783")
+
+[node name="Unit Type Indicator" type="Sprite3D" parent="."]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 1.29862, 0)
+billboard = 1
+render_priority = 1
+texture = ExtResource("4_ofdmm")

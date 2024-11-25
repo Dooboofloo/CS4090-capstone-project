@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sgwup50wrm4r"
-path.s3tc="res://.godot/imported/mulltiShot.png-6e274723698fe9f91d816e66c8c61b27.s3tc.ctex"
+uid="uid://c73dyufhmj1i0"
+path.s3tc="res://.godot/imported/Normal Unit Indicator.png-db0866eaa8c259d9f2759de6012a47b5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/mulltiShot.png"
-dest_files=["res://.godot/imported/mulltiShot.png-6e274723698fe9f91d816e66c8c61b27.s3tc.ctex"]
+source_file="res://Textures/Unit Textures/Normal Unit Indicator.png"
+dest_files=["res://.godot/imported/Normal Unit Indicator.png-db0866eaa8c259d9f2759de6012a47b5.s3tc.ctex"]
 
 [params]
 

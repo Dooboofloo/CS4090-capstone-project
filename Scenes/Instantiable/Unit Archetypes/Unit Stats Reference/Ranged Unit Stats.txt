@@ -1,0 +1,8 @@
+Ranged Unit Stats
+
+Move Speed: 30
+Damage: 4
+Health: 6
+Max Health: 6
+Cost: 9
+Enemy Base Multiplier: 1.5
