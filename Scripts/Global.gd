@@ -53,7 +53,7 @@ func game_over(storage = []):
 		#NOTE: Using the above as example, you can add more things that game_over should track,
 		#NOTE: you just need to make sure you add the necessary content to global. Mainly for taking things
 		#NOTE: from gamestate at gameover.
-	
+		
 	#Notifying player
 	print()
 	print("!--------------!GAME OVER!--------------!")

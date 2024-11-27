@@ -1,10 +1,10 @@
-[gd_scene load_steps=36 format=3 uid="uid://c8m1ehv3630xk"]
+[gd_scene load_steps=36 format=3 uid="uid://yuve2u02s7k6"]
 
-[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_uggst"]
-[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="2_0ia7r"]
-[ext_resource type="Texture2D" uid="uid://b0w4ffyh86e3g" path="res://indev/Caveman Age Map Stuff/texture_07.png" id="3_asym0"]
-[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="4_fcr4n"]
-[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/towers_placed.gd" id="5_bafcn"]
+[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_1pnt5"]
+[ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="2_8hfka"]
+[ext_resource type="Texture2D" uid="uid://b0w4ffyh86e3g" path="res://indev/Caveman Age Map Stuff/texture_07.png" id="3_dpyxj"]
+[ext_resource type="Script" path="res://Scripts/Classes/PathManager.gd" id="4_c060r"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="5_wc6oj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vclh2"]
 sky_top_color = Color(0, 0.397557, 0.629019, 1)
@@ -19,9 +19,11 @@ background_mode = 2
 sky = SubResource("Sky_up5e2")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
+glow_enabled = true
+glow_intensity = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j8s7k"]
-albedo_texture = ExtResource("3_asym0")
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_xe5mq"]
@@ -34,7 +36,7 @@ size = Vector3(60, 2, 120)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_matxd"]
 albedo_color = Color(1, 0.3746, 0.367139, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_la38d"]
@@ -42,7 +44,7 @@ material = SubResource("StandardMaterial3D_matxd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yje6h"]
 albedo_color = Color(0, 1, 0.607843, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_m2k6e"]
@@ -53,7 +55,7 @@ size = Vector3(1, 0.5, 31)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk188"]
 albedo_color = Color(1, 0.807916, 0.358328, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_t6d8v"]
@@ -64,32 +66,32 @@ size = Vector3(1, 0.5, 31)
 size = Vector3(21, 0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vegb0"]
-albedo_color = Color(0.913725, 0.737255, 0.352941, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_lqw7e"]
 material = SubResource("StandardMaterial3D_vegb0")
 size = Vector3(21, 0.5, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yf8yw"]
-size = Vector3(1, 0.5, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_x78t8"]
+size = Vector3(1, 0.5, 35.499)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3cafu"]
-albedo_color = Color(0.894118, 0.74902, 0.384314, 1)
-albedo_texture = ExtResource("3_asym0")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xn38e"]
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_1e6pg"]
-material = SubResource("StandardMaterial3D_3cafu")
-size = Vector3(1, 0.5, 35.5)
+[sub_resource type="BoxMesh" id="BoxMesh_lu7li"]
+material = SubResource("StandardMaterial3D_xn38e")
+size = Vector3(1, 0.5, 35.499)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y4ftn"]
 size = Vector3(20, 0.414063, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1euk3"]
-albedo_color = Color(0.807843, 0.678431, 0.368627, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_lfqcy"]
@@ -100,13 +102,25 @@ size = Vector3(20, 0.5, 1)
 size = Vector3(1.11148, 0.35434, 53.0883)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5hsv3"]
-albedo_color = Color(0.788235, 0.690196, 0.4, 1)
-albedo_texture = ExtResource("3_asym0")
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("3_dpyxj")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_25bo8"]
 material = SubResource("StandardMaterial3D_5hsv3")
 size = Vector3(1, 0.5, 53)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdui8"]
+size = Vector3(1, 0.5, 35.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_squyb"]
+albedo_color = Color(1, 0.807843, 0.356863, 1)
+albedo_texture = ExtResource("3_dpyxj")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cjnxb"]
+material = SubResource("StandardMaterial3D_squyb")
+size = Vector3(1, 0.5, 35.5)
 
 [sub_resource type="Curve3D" id="Curve3D_swcr6"]
 _data = {
@@ -115,27 +129,11 @@ _data = {
 }
 point_count = 10
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pf62"]
-albedo_texture = ExtResource("4_fcr4n")
-normal_scale = -0.18
-uv1_scale = Vector3(3, 2, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_sji6m"]
-material = SubResource("StandardMaterial3D_2pf62")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_s4eb2"]
-size = Vector3(60, 0.5, 60)
-
-[node name="Caveman Map outline" type="Node3D"]
-script = ExtResource("1_uggst")
+[node name="Caveman Map" type="Node3D"]
+script = ExtResource("1_1pnt5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_87b2l")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00423, 3.69851, -4.88576)
-script = ExtResource("2_0ia7r")
 
 [node name="Ground_Terrain" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -189,11 +187,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00180244, 0, 0)
 mesh = SubResource("BoxMesh_lqw7e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Path Left"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.9856, -4.76837e-07, 1.25197)
-shape = SubResource("BoxShape3D_yf8yw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.992, 0, 1.25)
+shape = SubResource("BoxShape3D_x78t8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Left/CollisionShape3D3"]
-mesh = SubResource("BoxMesh_1e6pg")
+mesh = SubResource("BoxMesh_lu7li")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Path Left"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4924, 0, 19.4992)
@@ -231,10 +229,10 @@ mesh = SubResource("BoxMesh_lqw7e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="Path Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.992, 0.042, 1.252)
-shape = SubResource("BoxShape3D_yf8yw")
+shape = SubResource("BoxShape3D_rdui8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D3"]
-mesh = SubResource("BoxMesh_1e6pg")
+mesh = SubResource("BoxMesh_cjnxb")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Path Right"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.492, 0.042, 19.499)
@@ -251,24 +249,45 @@ shape = SubResource("BoxShape3D_dpjka")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0271282, 0.0212278, -0.00834656)
 mesh = SubResource("BoxMesh_25bo8")
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="PathManager" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752068, 0)
 curve = SubResource("Curve3D_swcr6")
+script = ExtResource("4_c060r")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -50.5
+offset_right = 90.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("5_wc6oj")
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Load"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true
-transform = Transform3D(-0.999928, 0, 0.000270975, 0, 1, 0, -0.000270975, 0, -0.999927, 19.9924, 0, -47.9903)
-loop = false
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, -3.1694, 12.8394, 67.9449)
+script = ExtResource("2_8hfka")
 
-[node name="Test Unit" type="MeshInstance3D" parent="Path3D/PathFollow3D"]
-mesh = SubResource("BoxMesh_sji6m")
-
-[node name="Placeable_Area" type="Area3D" parent="."]
-unique_name_in_owner = true
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Placeable_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.192641, 30.041)
-shape = SubResource("BoxShape3D_s4eb2")
-
-[node name="TowersPlaced" type="Node3D" parent="."]
-script = ExtResource("5_bafcn")
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="VBoxContainer" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="VBoxContainer" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGameButton" to="VBoxContainer" method="_on_quit_game_button_pressed"]

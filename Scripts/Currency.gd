@@ -29,7 +29,10 @@ func _ready():
 func _process(_delta):
 	#not doing calculation unless current scene is a map.
 	#This check will change when more maps are in. Prob use an array with all map scene map node names.
-	if get_tree().current_scene.name == "Caveman Map":
+	
+	# KILIAN: I added a check to the if statement to ensure current_scene is not NULL
+	# KILIAN: this line was causing an error when changing from main menu scenes 
+	if get_tree().current_scene and get_tree().current_scene.name == "Caveman Map":
 		var currentTime = Time.get_ticks_msec()
 		
 		#Checking to see if defined intervals have passed.
