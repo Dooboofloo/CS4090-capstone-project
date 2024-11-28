@@ -123,7 +123,8 @@ func take_damage(amount: int):
 #Function for healer unit.
 func heal_damage(amount: int):
 	if health < maxHealth:
-		health += amount - ((amount + health) - maxHealth)
+		health += amount
+		health = min(maxHealth, health)
 		
 		changeHealthBar()
 
