@@ -174,11 +174,14 @@ func _ranged_area_entered(area: Area3D):
 	var unit = area.get_parent()
 	
 	if unit is Unit:
-		if (unit != self) and (self.IS_FIGHTING == false):
+		if (unit != self):
+			#Heal farthest unit. Aka frontline.
 			if (unit.alignment == self.alignment) and (self.unit_name == "HealUnit"):
 				begin_fighting(unit)
+			#Attack closest enemy unit even if other enemy units enter range.
 			elif (unit.alignment != self.alignment) and (self.unit_name == "RangedUnit"):
-				begin_fighting(unit)
+				if self.IS_FIGHTING == false:
+					begin_fighting(unit)
 
 func _ranged_area_exited(area: Area3D):
 	var unit = area.get_parent()
