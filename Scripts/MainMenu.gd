@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 
 	
 func _on_new_game_button_pressed() -> void:
+	Global.reset_stats() # Make sure stats are in initial state
 	get_tree().change_scene_to_packed(MAIN_SCENE)
 
 func _on_load_game_button_pressed() -> void:

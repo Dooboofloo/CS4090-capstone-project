@@ -30,20 +30,9 @@ func game_over(storage = []):
 	if Currency.grugarians > 0:
 		print("ERROR! There are still Grugarians left to fight!")
 		return
-		
-	#Resetting grug vars
-	Currency.grugarians = 100
-	Currency.grugarianGen = [["Base", 2]]
 	
-	#Resetting tower vars
-	Currency.towerCoin = 0
-	Currency.towerCoinGen = [["Base", 1]]
-	
-	#Things we reset to be safe than sorry.
-	Currency.startTimeTC = 0
-	Currency.startTimeGrug = 0
-	Currency.genIntervalTC = 2000
-	Currency.genIntervalGrug = 4500
+	# Reset stats
+	reset_stats()
 	
 	#Handling given items to store.
 	for i in len(storage):
@@ -60,3 +49,18 @@ func game_over(storage = []):
 	print("The streets of Grugaria are silent. Grag's hand holds a crown of a lost nation. Grugaria has fallen.")
 	print("A passing dimension traveling Grugarain apostle records your stats within G.R.U.G.")
 	print()
+
+func reset_stats():
+	#Resetting grug vars
+	Currency.grugarians = 100
+	Currency.grugarianGen = [["Base", 2]]
+	
+	#Resetting tower vars
+	Currency.towerCoin = 0
+	Currency.towerCoinGen = [["Base", 1]]
+	
+	#Things we reset to be safe than sorry.
+	Currency.startTimeTC = 0
+	Currency.startTimeGrug = 0
+	Currency.genIntervalTC = 2000
+	Currency.genIntervalGrug = 4500

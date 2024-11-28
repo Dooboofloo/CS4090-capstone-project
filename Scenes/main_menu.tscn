@@ -1,9 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://yuve2u02s7k6"]
+[gd_scene load_steps=34 format=3 uid="uid://yuve2u02s7k6"]
 
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/caveman_scene.gd" id="1_1pnt5"]
 [ext_resource type="Script" path="res://indev/Caveman Age Map Stuff/camera_3d.gd" id="2_8hfka"]
 [ext_resource type="Texture2D" uid="uid://b0w4ffyh86e3g" path="res://indev/Caveman Age Map Stuff/texture_07.png" id="3_dpyxj"]
-[ext_resource type="Script" path="res://Scripts/Classes/PathManager.gd" id="4_c060r"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="5_wc6oj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vclh2"]
@@ -121,13 +120,6 @@ uv1_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_cjnxb"]
 material = SubResource("StandardMaterial3D_squyb")
 size = Vector3(1, 0.5, 35.5)
-
-[sub_resource type="Curve3D" id="Curve3D_swcr6"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 19.9924, 0, -47.9903, 0, 0, 0, 0, 0, 0, 19.984, 0, -16.9908, 0, 0, 0, 0, 0, 0, -0.99251, 0, -17.0148, 0, 0, 0, 0, 0, 0, -1.01211, 0, -52.497, 0, 0, 0, 0, 0, 0, -20.9884, 0, -52.4907, 0, 0, 0, 0, 0, 0, -20.9865, 0, 52.5024, 0, 0, 0, 0, 0, 0, -0.982655, 0, 52.4981, 0, 0, 0, 0, 0, 0, -0.98669, 0, 17.0004, 0, 0, 0, 0, 0, 0, 20.0009, 0, 16.9999, 0, 0, 0, 0, 0, 0, 20.0018, 0, 47.9858),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-}
-point_count = 10
 
 [node name="Caveman Map" type="Node3D"]
 script = ExtResource("1_1pnt5")
@@ -248,11 +240,6 @@ shape = SubResource("BoxShape3D_dpjka")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Path Right/CollisionShape3D5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0271282, 0.0212278, -0.00834656)
 mesh = SubResource("BoxMesh_25bo8")
-
-[node name="PathManager" type="Path3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752068, 0)
-curve = SubResource("Curve3D_swcr6")
-script = ExtResource("4_c060r")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
