@@ -17,7 +17,7 @@ enum ALIGNMENT {ENEMY, ALLY}
 @export var cost: int = 7 # Cost for unit to be placed. Only matters for player deployment.
 
 #CAUTION: When the waves are implemented, this should be changed based on current wave, to make enemy units not die quick.
-@export var enemyMult: float = 2 #A multiplier for the enemy. Right now it buffs health of enemy unit only.
+@export var enemyMult: float = 1.5 #A multiplier for the enemy. Right now it buffs health of enemy unit only.
 
 var velocity = 0
 

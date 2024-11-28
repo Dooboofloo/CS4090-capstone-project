@@ -30,7 +30,7 @@ func _on_place_tower_btn_pressed() -> void:
 	towers_placed_script.preview_placement(sniperTower)
 
 func _on_send_unit_btn_pressed() -> void:
-	path_manager.spawn_unit()
+	path_manager.spawn_unit("normal") # TODO: Change depending on which button pressed
 	yap(warcry())
 
 # Handle Keymapping Events

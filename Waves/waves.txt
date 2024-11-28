@@ -1,0 +1,33 @@
+wait 10
+
+startwave 1
+
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy heal
+wait 7
+
+enemy tank
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy tank
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy heal
+wait 5
+
+endwave 15
