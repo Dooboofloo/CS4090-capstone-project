@@ -31,3 +31,32 @@ enemy heal
 wait 5
 
 endwave 15
+
+
+
+startwave 2
+setmult normal 2.2
+
+enemy fast
+wait 0.1
+enemy fast
+wait 1
+enemy normal
+wait 0.5
+enemy normal
+wait 0.5
+enemy normal
+wait 7
+
+enemy tank
+wait 0.5
+enemy tank
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 1
+enemy normal
+wait 5
+
+endwave 15
