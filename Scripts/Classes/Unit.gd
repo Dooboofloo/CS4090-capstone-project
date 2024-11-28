@@ -124,7 +124,7 @@ func take_damage(amount: int):
 func heal_damage(amount: int):
 	if health < maxHealth:
 		health += amount
-		health = min(maxHealth, health)
+		health = min(maxHealth, health) # Prevent overheal
 		
 		changeHealthBar()
 
@@ -133,8 +133,6 @@ func die():
 	self.queue_free()
 
 func crash_castle():
-	# TODO
-	# for now just kill it and print a message
 	
 	#NOTE: This is the base damage calc. Idea is that the damage is based on unit damage and cost reduced by current health %.
 	var baseDmg = ceil(float(damage) * (float(health)/float(maxHealth)) * float(cost))

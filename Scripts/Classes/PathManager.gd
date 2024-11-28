@@ -34,13 +34,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	
 	# Test code - remove from release
-	#if Input.is_action_just_pressed("test_spawn_enemy"):
-		#var unit_types = ["normal", "fast", "heal", "tank", "ranged"]
-		#spawn_enemy(unit_types.pick_random())
+	if Input.is_action_just_pressed("test_spawn_enemy"):
+		var unit_types = ["normal", "fast", "heal", "tank", "ranged"]
+		spawn_enemy(unit_types.pick_random())
 	
 	
-	if WAVE_PROCESSING and (not EMERGENCY_STOP):
-		process_wave()
+	#if WAVE_PROCESSING and (not EMERGENCY_STOP):
+		#process_wave()
 
 
 func spawn_unit(unit_type: String):
