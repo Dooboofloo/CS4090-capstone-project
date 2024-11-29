@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 # TODO: 
-# [ ] Change Mouse Mode the CORRECT WAY.
 # [ ] Save and Load Game
 
 const MAIN_SCENE = preload("res://indev/Caveman Age Map Stuff/Caveman Scene.tscn")
