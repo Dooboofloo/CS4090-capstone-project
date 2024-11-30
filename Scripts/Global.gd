@@ -17,9 +17,9 @@ func _ready() -> void:
 	
 
 func _input(_event: InputEvent) -> void:
-	
-	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = !get_tree().paused
+	pass
+	#if Input.is_action_just_pressed("pause"):
+		#get_tree().paused = !get_tree().paused
 
 
 #Handling resetting of all variables that need to be reset and storing player score.

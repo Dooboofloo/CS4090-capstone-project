@@ -10,10 +10,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
+# handle keyboard inputs
+func _input(event):
+	if event.is_action_released("pause_play"):
+		_on_play_button_pressed()
+	elif event.is_action_pressed("quit"):
+		_on_quit_pressed()
+	elif event.is_action_released("escape"):
+		_on_play_button_pressed()
+
 func _on_play_button_pressed() -> void:
 	# unpause game, remove pause menu instance
-	get_tree().paused = false
+	Input.flush_buffered_events()
 	queue_free()
+	print("PLAY")
+	get_tree().paused = false
+
 
 func _on_restart_button_pressed() -> void:
 	# Restart Game

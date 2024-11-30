@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var isPaused = false
+var isPaused = true
 
 # References
 var pause_menu_scene: PackedScene = null 
@@ -40,11 +40,12 @@ func _on_send_unit_btn_pressed() -> void:
 	
 func _on_pause_button_pressed() -> void:
 	# pause game, add pause menu to UI
-	get_tree().paused = true
-	print(pause_menu_scene)
+	Input.flush_buffered_events()
 	var pause_menu = pause_menu_scene.instantiate() 
-	print(pause_menu)
 	add_child(pause_menu)
+	print("PAUSE")
+	get_tree().paused = true
+
 	
 	
 	
@@ -61,7 +62,9 @@ func _input(event):
 		_on_place_tower_btn_pressed()
 	elif event.is_action_pressed("test_spawn_unit"):
 		_on_send_unit_btn_pressed()
-		
+
+
+
 # Display Messages on Screen 
 func yap(message: String):
 	# add message to messages 
@@ -82,6 +85,12 @@ func yap(message: String):
 # Refresh UI 
 func _process(_delta):
 	update_currency_display()
+
+	if Input.is_action_just_released("escape"):
+		_on_pause_button_pressed()
+	elif Input.is_action_just_released("pause_play"):
+		_on_pause_button_pressed()
+		
 	
 # Utility funciton
 func get_timestamp():

@@ -275,7 +275,6 @@ shape = SubResource("BoxShape3D_s4eb2")
 script = ExtResource("5_p30b2")
 
 [node name="UI" type="CanvasLayer" parent="."]
-process_mode = 1
 script = ExtResource("7_w6jmp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
