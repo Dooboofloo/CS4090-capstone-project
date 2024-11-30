@@ -1,5 +1,7 @@
 extends Control
 
+var stay_paused = true
+
 const MAIN_SCENE = preload("res://indev/Caveman Age Map Stuff/Caveman Scene.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -8,6 +10,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not stay_paused: 
+		get_tree().paused = false
+		queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 
 # handle keyboard inputs
@@ -21,11 +26,12 @@ func _input(event):
 
 func _on_play_button_pressed() -> void:
 	# unpause game, remove pause menu instance
-	Input.flush_buffered_events()
-	queue_free()
-	print("PLAY")
-	get_tree().paused = false
-
+	# viewport.set_input_as_handled() 
+	if get_tree().paused:
+		#queue_free()
+		print("PLAY")
+		stay_paused = false 
+		#get_tree().paused = false
 
 func _on_restart_button_pressed() -> void:
 	# Restart Game
