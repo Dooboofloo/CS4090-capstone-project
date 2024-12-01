@@ -63,4 +63,4 @@ func reset_stats():
 	Currency.startTimeTC = 0
 	Currency.startTimeGrug = 0
 	Currency.genIntervalTC = 2000
-	Currency.genIntervalGrug = 4500
+	Currency.genIntervalGrug = 4000
