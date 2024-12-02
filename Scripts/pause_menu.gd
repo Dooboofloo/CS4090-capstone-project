@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 	if not stay_paused: 
 		get_tree().paused = false
 		queue_free()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 # handle keyboard inputs
 func _input(event):

@@ -282,10 +282,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 alignment = 2
 
-[node name="PlaceTowerBtn" type="Button" parent="UI/HBoxContainer"]
+[node name="Tower1Button" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
-text = "Place Tower
-cost: 1 Tower Coin"
+
+[node name="Tower2Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Tower3Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Tower4Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+
+[node name="Tower5Button" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
 
 [node name="SendUnitBtn" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
@@ -312,6 +322,10 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Pause Game"
 
-[connection signal="pressed" from="UI/HBoxContainer/PlaceTowerBtn" to="UI" method="_on_place_tower_btn_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Tower1Button" to="UI" method="_on_tower_1_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Tower2Button" to="UI" method="_on_tower_2_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Tower3Button" to="UI" method="_on_tower_3_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Tower4Button" to="UI" method="_on_tower_4_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Tower5Button" to="UI" method="_on_tower_5_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/SendUnitBtn" to="UI" method="_on_send_unit_btn_pressed"]
 [connection signal="pressed" from="UI/PauseButton" to="UI" method="_on_pause_button_pressed"]

@@ -21,14 +21,21 @@ func _ready():
 	path_manager = get_parent().get_node("PathManager")
 	message_container = $RichTextLabel
 	pause_menu_scene = preload("res://Scenes/pause_menu.tscn")
+	
+	$HBoxContainer/Tower1Button.text = "Basic Tower"
+	$HBoxContainer/Tower2Button.text = "Multi Tower"
+	$HBoxContainer/Tower3Button.text = "Econ TC Tower"
+	$HBoxContainer/Tower4Button.text = "Rapid Tower"
+	$HBoxContainer/Tower5Button.text = "Sniper Tower"
 
 # Update Tower Coin and Grugarians on UI 
 func update_currency_display():
 	$HBoxContainer/Label.text = "Tower Coin: " + str(Currency.towerCoin) + " | Grugarians: " + str(Currency.grugarians)
 
-func _on_place_tower_btn_pressed() -> void:
-	# Call preview_placement in TowersPlaced script
-	towers_placed_script.preview_placement(sniperTower)
+#func _on_place_tower_btn_pressed() -> void:
+	## Call preview_placement in TowersPlaced script
+	#towers_placed_script.preview_placement(sniperTower)
+	#
 
 func _on_send_unit_btn_pressed() -> void:
 	path_manager.spawn_unit("normal") # TODO: Change depending on which button pressed
@@ -43,23 +50,22 @@ func _on_pause_button_pressed() -> void:
 		get_tree().paused = true
 
 
-	
-	
-	#isPaused = !isPaused
-	#get_tree().paused = isPaused
-	#if isPaused:
-		#$PauseButton.text = "Continue"
-	#else:
-		#$PauseButton.text = "Pause Game"
-
 # Handle Keybinding Events
 func _input(event):
-	if event.is_action_pressed("place_tower"):
-		_on_place_tower_btn_pressed()
-	elif event.is_action_pressed("test_spawn_unit"):
+	#if event.is_action_pressed("place_tower"):
+		#_on_place_tower_btn_pressed()
+	if event.is_action_pressed("test_spawn_unit"):
 		_on_send_unit_btn_pressed()
-
-
+	elif event.is_action_pressed("tower1"):
+		_on_tower_1_button_pressed()
+	elif event.is_action_pressed("tower2"):
+		_on_tower_2_button_pressed()
+	elif event.is_action_pressed("tower3"):
+		_on_tower_3_button_pressed()
+	elif event.is_action_pressed("tower4"):
+		_on_tower_4_button_pressed()
+	elif event.is_action_pressed("tower5"):
+		_on_tower_5_button_pressed()
 
 # Display Messages on Screen 
 func yap(message: String):
@@ -99,4 +105,17 @@ func warcry():
 	var warcries = ["RAHHH!!!", "For Grugaria!", "Long Live Grug!"]
 	return warcries[randi() % 3]
 	
+func _on_tower_1_button_pressed() -> void:
+	towers_placed_script.preview_placement(basicTower)
+
+func _on_tower_2_button_pressed() -> void:
+	towers_placed_script.preview_placement(multiTower)
+
+func _on_tower_3_button_pressed() -> void:
+	towers_placed_script.preview_placement(econTCTower)
+
+func _on_tower_4_button_pressed() -> void:
+	towers_placed_script.preview_placement(rapidTower)
 	
+func _on_tower_5_button_pressed() -> void:
+	towers_placed_script.preview_placement(sniperTower)
