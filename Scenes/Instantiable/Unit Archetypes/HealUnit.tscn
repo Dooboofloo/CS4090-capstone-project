@@ -31,7 +31,6 @@ damage = 5
 health = 6
 maxHealth = 6
 cost = 10
-enemyMult = 1.5
 
 [node name="UnitCollisionArea" type="Area3D" parent="."]
 collision_layer = 2

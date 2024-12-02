@@ -7,6 +7,8 @@ var path_manager: Node = null
 var message_container: RichTextLabel = null
 var messages = []
 
+# Preload Unit Models
+
 #Tower Models Preload
 var dummyTower = preload("res://Scenes/Instantiable/Tower Archetypes/DummyTower.tscn")
 var basicTower = preload("res://Scenes/Instantiable/Tower Archetypes/BasicTower.tscn")
@@ -107,6 +109,8 @@ func warcry():
 	var warcries = ["RAHHH!!!", "For Grugaria!", "Long Live Grug!"]
 	return warcries[randi() % 3]
 	
+
+	
 func _on_tower_1_button_pressed() -> void:
 	towers_placed_script.preview_placement(basicTower)
 
@@ -121,3 +125,24 @@ func _on_tower_4_button_pressed() -> void:
 	
 func _on_tower_5_button_pressed() -> void:
 	towers_placed_script.preview_placement(sniperTower)
+
+
+func _on_unit_1_button_pressed() -> void:
+	path_manager.spawn_unit("fast") 
+	yap(warcry(), "red")
+
+func _on_unit_2_button_pressed() -> void:
+	path_manager.spawn_unit("heal") 
+	yap(warcry(), "red")
+
+func _on_unit_3_button_pressed() -> void:
+	path_manager.spawn_unit("normal") 
+	yap(warcry(), "red")
+
+func _on_unit_4_button_pressed() -> void:
+	path_manager.spawn_unit("ranged") 
+	yap(warcry(), "red")
+
+func _on_unit_5_button_pressed() -> void:
+	path_manager.spawn_unit("tank") 
+	yap(warcry(), "red")

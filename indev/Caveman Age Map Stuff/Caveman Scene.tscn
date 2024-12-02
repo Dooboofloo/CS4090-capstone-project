@@ -278,8 +278,8 @@ script = ExtResource("5_p30b2")
 script = ExtResource("7_w6jmp")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 809.0
+offset_bottom = 54.0
 alignment = 2
 
 [node name="Tower1Button" type="Button" parent="UI/HBoxContainer"]
@@ -296,11 +296,6 @@ layout_mode = 2
 
 [node name="Tower5Button" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
-
-[node name="SendUnitBtn" type="Button" parent="UI/HBoxContainer"]
-layout_mode = 2
-text = "Send Unit
-cost: 1 grugarian"
 
 [node name="Label" type="Label" parent="UI/HBoxContainer"]
 layout_mode = 2
@@ -322,10 +317,40 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "Pause Game"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI"]
+offset_left = 1.0
+offset_top = 54.0
+offset_right = 464.0
+offset_bottom = 94.0
+
+[node name="unit1button" type="Button" parent="UI/HBoxContainer2"]
+layout_mode = 2
+text = "Fast Unit"
+
+[node name="unit2button" type="Button" parent="UI/HBoxContainer2"]
+layout_mode = 2
+text = "Heal Unit"
+
+[node name="unit3button" type="Button" parent="UI/HBoxContainer2"]
+layout_mode = 2
+text = "Normal Unit"
+
+[node name="unit4button" type="Button" parent="UI/HBoxContainer2"]
+layout_mode = 2
+text = "Ranged Unit"
+
+[node name="unit5button" type="Button" parent="UI/HBoxContainer2"]
+layout_mode = 2
+text = "Tank Unit"
+
 [connection signal="pressed" from="UI/HBoxContainer/Tower1Button" to="UI" method="_on_tower_1_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Tower2Button" to="UI" method="_on_tower_2_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Tower3Button" to="UI" method="_on_tower_3_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Tower4Button" to="UI" method="_on_tower_4_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Tower5Button" to="UI" method="_on_tower_5_button_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/SendUnitBtn" to="UI" method="_on_send_unit_btn_pressed"]
 [connection signal="pressed" from="UI/PauseButton" to="UI" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer2/unit1button" to="UI" method="_on_unit_1_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer2/unit2button" to="UI" method="_on_unit_2_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer2/unit3button" to="UI" method="_on_unit_3_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer2/unit4button" to="UI" method="_on_unit_4_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer2/unit5button" to="UI" method="_on_unit_5_button_pressed"]
