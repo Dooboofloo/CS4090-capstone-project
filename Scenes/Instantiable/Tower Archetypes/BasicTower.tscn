@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_bus3v"]
 [ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_0qfrl"]
-[ext_resource type="Texture2D" uid="uid://c3yo6tk1brpgq" path="res://Textures/normalShot.png" id="3_3trjg"]
+[ext_resource type="Texture2D" uid="uid://c3yo6tk1brpgq" path="res://Textures/Tower Textures/normalShot.png" id="3_3trjg"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
 

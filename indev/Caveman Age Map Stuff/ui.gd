@@ -39,7 +39,7 @@ func update_currency_display():
 
 func _on_send_unit_btn_pressed() -> void:
 	path_manager.spawn_unit("normal") # TODO: Change depending on which button pressed
-	yap(warcry())
+	yap(warcry(), "red")
 	
 func _on_pause_button_pressed() -> void:
 	# pause game, add pause menu to UI
@@ -68,7 +68,7 @@ func _input(event):
 		_on_tower_5_button_pressed()
 
 # Display Messages on Screen 
-func yap(message: String):
+func yap(message: String, color: String):
 	# add message to messages 
 	var formatted_message = "[%s] %s" % [get_timestamp(), message]
 	messages.insert(0, formatted_message)
@@ -81,7 +81,9 @@ func yap(message: String):
 	message_container.push_bgcolor("black")
 	message_container.push_color("white")
 	for msg in messages: 
+		message_container.push_color(color)
 		message_container.append_text(msg)
+		message_container.pop()
 		message_container.newline()
 
 # Refresh UI 
