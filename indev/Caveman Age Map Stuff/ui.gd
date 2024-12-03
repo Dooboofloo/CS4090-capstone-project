@@ -75,7 +75,7 @@ func _input(event):
 func yap(message: String, color: String = "white"):
 	# add message to messages 
 	var formatted_message = "[%s] %s" % [get_timestamp(), message]
-	messages.insert(0, formatted_message)
+	messages.insert(0, [formatted_message, color])
 	# if more than 6 messages, remove one 
 	if len(messages) > 6:
 		messages.pop_back()
@@ -84,8 +84,10 @@ func yap(message: String, color: String = "white"):
 	message_container.clear()
 	message_container.push_bgcolor("black")
 	message_container.push_color("white")
-	for msg in messages: 
-		message_container.push_color(color)
+	for elem in messages: 
+		var msg = elem[0]
+		var col = elem[1]
+		message_container.push_color(col)
 		message_container.append_text(msg)
 		message_container.pop()
 		message_container.newline()
@@ -126,20 +128,20 @@ func _on_tower_5_button_pressed() -> void:
 
 func _on_unit_1_button_pressed() -> void:
 	path_manager.spawn_unit("fast") 
-	yap(warcry(), "red")
+	yap(warcry(), "blue")
 
 func _on_unit_2_button_pressed() -> void:
 	path_manager.spawn_unit("heal") 
-	yap(warcry(), "red")
+	yap(warcry(), "blue")
 
 func _on_unit_3_button_pressed() -> void:
 	path_manager.spawn_unit("normal") 
-	yap(warcry(), "red")
+	yap(warcry(), "blue")
 
 func _on_unit_4_button_pressed() -> void:
 	path_manager.spawn_unit("ranged") 
-	yap(warcry(), "red")
+	yap(warcry(), "blue")
 
 func _on_unit_5_button_pressed() -> void:
 	path_manager.spawn_unit("tank") 
-	yap(warcry(), "red")
+	yap(warcry(), "blue")
