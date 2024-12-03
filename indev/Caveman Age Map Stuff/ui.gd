@@ -72,7 +72,7 @@ func _input(event):
 		_on_unit_5_button_pressed()
 
 # Display Messages on Screen 
-func yap(message: String, color: String):
+func yap(message: String, color: String = "white"):
 	# add message to messages 
 	var formatted_message = "[%s] %s" % [get_timestamp(), message]
 	messages.insert(0, formatted_message)
@@ -93,10 +93,8 @@ func yap(message: String, color: String):
 # Refresh UI 
 func _process(_delta):
 	update_currency_display()
-
-	if Input.is_action_just_released("escape"):
-		_on_pause_button_pressed()
-	elif Input.is_action_just_released("pause_play"):
+	
+	if Input.is_action_just_released("pause_play"):
 		_on_pause_button_pressed()
 
 # Utility funciton

@@ -260,10 +260,6 @@ script = ExtResource("5_wc6oj")
 layout_mode = 2
 text = "New Game"
 
-[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Load"
-
 [node name="QuitGameButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
@@ -292,5 +288,4 @@ texture = ExtResource("5_nc5wv")
 expand_mode = 1
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="VBoxContainer" method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="VBoxContainer" method="_on_load_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitGameButton" to="VBoxContainer" method="_on_quit_game_button_pressed"]
