@@ -1,16 +1,16 @@
 [gd_scene load_steps=16 format=3 uid="uid://c110qnghmbe75"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Tower.gd" id="1_ogwvr"]
-[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_ma0ut"]
+[ext_resource type="Texture2D" uid="uid://c4y70gfoxoyx" path="res://Textures/grug.png" id="2_ufbwu"]
 [ext_resource type="Texture2D" uid="uid://dxqsu3mivofum" path="res://Textures/Tower Textures/sniperShot.png" id="3_pepgd"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_etvmx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywy31"]
-albedo_texture = ExtResource("2_ma0ut")
-uv1_scale = Vector3(5, 5, 5)
+albedo_texture = ExtResource("2_ufbwu")
+uv1_scale = Vector3(3, 3, 3)
 
-[sub_resource type="SphereMesh" id="SphereMesh_c7mn4"]
+[sub_resource type="SphereMesh" id="SphereMesh_ltrp8"]
 material = SubResource("StandardMaterial3D_ywy31")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_03ka2"]
@@ -77,7 +77,7 @@ collision_layer = 2
 shape = SubResource("SphereShape3D_etvmx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Model/CollisionShape3D"]
-mesh = SubResource("SphereMesh_c7mn4")
+mesh = SubResource("SphereMesh_ltrp8")
 
 [node name="PlacementDenial" type="Area3D" parent="Model"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cuuqm6igkcyvr"]
 
 [ext_resource type="Script" path="res://Scripts/Classes/Unit.gd" id="1_xm6f2"]
-[ext_resource type="Texture2D" uid="uid://t0twce0oit4r" path="res://indev/Caveman Age Map Stuff/tumblr_3cd38a633e125329c05cf505226978ea_6374c33a_1280.png" id="2_ft6wx"]
+[ext_resource type="Texture2D" uid="uid://c4y70gfoxoyx" path="res://Textures/grug.png" id="2_gsith"]
 [ext_resource type="Texture2D" uid="uid://ce6keatsi5pic" path="res://Textures/healthbarHealthy.png" id="3_5ywpy"]
 [ext_resource type="Texture2D" uid="uid://c73dyufhmj1i0" path="res://Textures/Unit Textures/Normal Unit Indicator.png" id="3_e47qw"]
 
@@ -12,8 +12,8 @@ size = Vector3(3, 3, 3)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ofs0s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_viqhx"]
-albedo_texture = ExtResource("2_ft6wx")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5qh8c"]
+albedo_texture = ExtResource("2_gsith")
 uv1_scale = Vector3(3, 2, 2)
 
 [node name="NormalUnit" type="PathFollow3D"]
@@ -41,7 +41,7 @@ shape = SubResource("BoxShape3D_v8kjh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ofs0s")
-surface_material_override/0 = SubResource("StandardMaterial3D_viqhx")
+surface_material_override/0 = SubResource("StandardMaterial3D_5qh8c")
 
 [node name="Unit Type Indicator" type="Sprite3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 1.29862, 0)
