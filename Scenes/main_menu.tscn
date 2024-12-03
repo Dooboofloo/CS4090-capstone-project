@@ -122,7 +122,7 @@ uv1_triplanar = true
 material = SubResource("StandardMaterial3D_squyb")
 size = Vector3(1, 0.5, 35.5)
 
-[node name="Caveman Map" type="Node3D"]
+[node name="MainMenu" type="Node3D"]
 script = ExtResource("1_1pnt5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
