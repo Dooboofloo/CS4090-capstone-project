@@ -60,3 +60,35 @@ enemy normal
 wait 5
 
 endwave 15
+
+
+
+startwave 3
+setmult fast 5.0
+
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 0.05
+enemy fast
+wait 30
+
+endwave -1

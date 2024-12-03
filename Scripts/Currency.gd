@@ -49,6 +49,11 @@ func _process(_delta):
 			
 			#Changing startTime variable to check for second change again.
 			startTimeGrug = currentTime
+		
+		
+		# GAME OVER CHECKER
+		if grugarians <= 0:
+			Global.game_over()
 	
 	#TODO: Make it so that if the scene changes outside of maps that all vars reset to default. Game reset.
 

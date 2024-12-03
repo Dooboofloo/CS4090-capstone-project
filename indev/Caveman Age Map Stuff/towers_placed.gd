@@ -2,17 +2,6 @@ extends Node3D
 
 var current_preview = [] #Supposed to hold current tower for preview stuff. Prob shouldn't be a list but is nice.
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
 #Boots up preview of selected tower.
 #NOTE: Now takes a preloaded model for the tower to start preview of.
 func preview_placement(towerModel):
@@ -78,6 +67,8 @@ func placement():
 				current_preview.pop_back()
 				
 				print("Placement Complete!")
+				
+				Global.add_score(20)
 			else:
 				print("Invalid placement location / Not enough Tower Coin.")
 		else:

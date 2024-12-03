@@ -1,0 +1,91 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhmmn1ny4quoe"]
+
+[ext_resource type="Script" path="res://Scripts/GameOver.gd" id="1_7gk31"]
+[ext_resource type="Texture2D" uid="uid://dmv30a6ntcxh5" path="res://Textures/Game_Title_Stacked.png" id="2_c031s"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -205.0
+offset_right = 90.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+script = ExtResource("1_7gk31")
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "New Game"
+
+[node name="QuitGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -91.0
+offset_top = 15.0
+offset_right = 92.0
+offset_bottom = 181.0
+grow_horizontal = 2
+texture = ExtResource("2_c031s")
+expand_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -373.0
+offset_top = -84.0
+offset_right = 373.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "The streets of Grugaria are silent. Grag's hand holds a crown of a lost nation. Grugaria has fallen."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "A passing dimension traveling Grugarian apostle records your stats within G.R.U.G."
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "GAME OVER!"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "SCORE: %s"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="VBoxContainer" method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitGameButton" to="VBoxContainer" method="_on_quit_game_button_pressed"]

@@ -119,7 +119,7 @@ func _on_detect_unit_area_body_entered(body: Node3D):
 	var unit = body.get_parent()
 	if unit is Unit:
 		if unit.alignment == Unit.ALIGNMENT.ENEMY:
-			print("ADDING NEW UNIT TO RANGE")
+			#print("ADDING NEW UNIT TO RANGE")
 			# Add that unit to list of enemies
 			ENEMIES_IN_RANGE.append(unit)
 
@@ -128,7 +128,7 @@ func _on_detect_unit_area_body_exited(body: Node3D):
 	if unit is Unit:
 		if unit in ENEMIES_IN_RANGE:
 			# Not actually sure if this works
-			print("REMOVING UNIT FROM RANGE")
+			#print("REMOVING UNIT FROM RANGE")
 			# Remove that unit from the list of enemies
 			var index = ENEMIES_IN_RANGE.find(unit)
 			ENEMIES_IN_RANGE.remove_at(index)

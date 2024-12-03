@@ -129,7 +129,7 @@ func heal_damage(amount: int):
 		changeHealthBar()
 
 func die():
-	print("Died")
+	#print("Died")
 	self.queue_free()
 
 func crash_castle():
@@ -145,7 +145,10 @@ func crash_castle():
 
 func die_for_grug():
 	# TODO: Figure out what to do when an allied unit makes it to end of path
-	print("Yeah we uhhhh crashed the enemy castle yuh")
+	Global.add_score(100)
+	var num_tc_pillaged = randi() % 7
+	$"../../UI".yap("We die for Grug! (+%s TC)" % num_tc_pillaged, "green")
+	Currency.receive_towerCoin(num_tc_pillaged)
 	die()
 
 func _area_entered(area: Area3D):

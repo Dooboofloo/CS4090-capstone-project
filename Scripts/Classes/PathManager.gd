@@ -46,6 +46,8 @@ func _process(_delta: float) -> void:
 func spawn_unit(unit_type: String):
 	print("Unit Spawned: " + unit_type)
 	
+	Global.add_score(10) # Add 10 score for spawning a unit
+	
 	var unit
 	match unit_type:
 		"normal":
@@ -86,7 +88,7 @@ func spawn_enemy(unit_type: String):
 
 func wait(delay: float):
 	WAVE_PROCESSING = false
-	var timer = get_tree().create_timer(delay)
+	var timer = get_tree().create_timer(delay, false)
 	timer.connect("timeout", _end_wait)
 
 func start_wave(num: int):
@@ -99,16 +101,19 @@ func set_mult(unit_type: String, new_mult: float):
 func end_wave(delay:float):
 	if delay < 0:
 		# If delay is negative, we have completed the final wave.
-		UI.yap("FINAL WAVE COMPLETED. CONGRATULATIONS ON TOTAL GRAGICIDE!")
+		UI.yap("FINAL WAVE COMPLETED. CONGRATULATIONS ON TOTAL GRAGICIDE!", "green")
+		Global.add_score(5000) # Add a TON of score for winning
 	else:
-		UI.yap("WAVE COMPLETED. You have " + str(delay) + " seconds to prepare!")
+		UI.yap("WAVE COMPLETED. You have " + str(delay) + " seconds to prepare!", "green")
+		Global.add_score(500) # Add a big chunk of score for passing a wave
 	
 	wait(delay)
 
 func process_wave():
-	#COMMANDS = ["startwave", "setmult", "enemy", "wait", "endwave"]
+	# COMMANDS = ["startwave", "setmult", "enemy", "wait", "endwave"]
+	# ENEMY_TYPES = ["normal", "fast", "heal", "tank", "ranged"]
 	# startwave [int] - changes current wave number and yaps
-	# setmult [enemy_type] [multiplier] - sets the enemy health multiplier of enemy_type to multiplier
+	# setmult [enemy_type] [float] - sets the enemy health multiplier of enemy_type to float
 	# enemy [enemy_type] - spawns one instance of an enemy with type enemy_type
 	# wait [float] - waits a number of seconds equal to float
 	# endwave [float] - ends wave an yaps. waits a number of seconds equal to float. if float is negative, halts processing and issues congratulations
@@ -133,7 +138,7 @@ func process_wave():
 			set_mult( enemy_type, new_mult )
 		"enemy":
 			var enemy_type = current_command[1]
-			print("Spawning enemy...")
+			#print("Spawning enemy...")
 			spawn_enemy( enemy_type )
 		"wait":
 			var delay = float(current_command[1])
